@@ -125,7 +125,7 @@ const PlanCard = ({ data, isBest }) => {
         </div>
         <div className="space-y-3 px-1 md:px-2">
           {data.pros.map((pro, i) => (
-            <div key={i} className="flex items-center space-x-3 text-[13px] md:text-[15px] font-bold text-slate-700 leading-snug">
+            <div key={i} className="flex items-center space-x-3 text-[15px] md:text-[16px] font-bold text-slate-700 leading-snug">
               <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-red-100 flex items-center justify-center shrink-0">
                 <Check className="w-3 h-3 text-red-600" />
               </div>
@@ -361,7 +361,8 @@ const App = () => {
                 <span className="text-xs font-black text-amber-900 uppercase tracking-widest">Reward Point System</span>
               </div>
               <h3 className="text-[26px] sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tighter leading-[1.3] mb-3 md:mb-3">
-                차곡차곡 모은 적립금, <br className="md:hidden" />결제 금액의 <span className="text-white drop-shadow-md underline decoration-amber-500 decoration-4 md:decoration-8 underline-offset-4">최대 30% 추가 할인</span>
+                차곡차곡 모은 적립금, 결제 금액의 <br />
+                <span className="text-white drop-shadow-md underline decoration-amber-500 decoration-4 md:decoration-8 underline-offset-4">최대 30% 추가 할인</span>
               </h3>
               <p className="text-[14px] md:text-lg font-bold text-amber-900/80 tracking-tight leading-relaxed max-w-lg mx-auto lg:mx-0">
                 아인잉글리쉬만의 특급 적립 제도를 100% 활용하세요.<br className="hidden md:block"/> 다양한 활동으로 포인트를 모아 <span className="text-slate-900 font-black bg-white/60 px-1.5 rounded">더욱 가벼운 수강료</span>를 경험하세요!
