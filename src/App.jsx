@@ -334,7 +334,7 @@ const App = () => {
               </div>
               <h3 className={s.pointTitle}>
                 차곡차곡 모은 적립금, <br className={s.brMobileOnly} />
-                결제 금액의 <br className={s.brDesktopOnly} />
+                결제 금액의 <br className={s.brMobileOnly} />
                 <span className={s.pointTitleHighlight}>최대 30% 추가 할인</span>
               </h3>
               <p className={s.pointDesc}>
