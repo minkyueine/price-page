@@ -17,7 +17,12 @@ import {
   Wallet,
   Star,
   Quote,
-  Coins
+  Coins,
+  Youtube,
+  Facebook,
+  Instagram,
+  User,
+  MessageSquare
 } from 'lucide-react';
 
 // 기간별 가격 정보 컴포넌트 (정렬 완벽 맞춤)
@@ -203,10 +208,76 @@ const App = () => {
   return (
     <div className="min-h-screen bg-white font-sans text-slate-900 pb-20 overflow-x-hidden selection:bg-red-100">
       {/* Navigation */}
-      <nav className="bg-white/90 backdrop-blur-md px-5 md:px-10 py-4 md:py-5 flex justify-between items-center sticky top-0 z-[100] border-b border-slate-100 shadow-sm">
-        <div className="text-2xl md:text-3xl font-black text-red-600 italic tracking-tighter">einenglish</div>
-        <button className="bg-red-600 text-white text-sm md:text-base font-black px-5 md:px-7 py-2.5 md:py-3 rounded-full shadow-md active:scale-95 transition-all hover:bg-red-700">무료체험 신청</button>
-      </nav>
+      <header className="sticky top-0 z-[100] bg-white border-b border-slate-100 shadow-sm">
+        {/* Top Bar */}
+        <div className="hidden md:flex justify-end items-center px-10 py-2 space-x-4 border-b border-slate-50">
+          <div className="flex items-center space-x-3 text-[11px] font-bold text-slate-500">
+            <button className="hover:text-red-600 transition-colors">로그인</button>
+            <span className="w-px h-2.5 bg-slate-200"></span>
+            <button className="hover:text-red-600 transition-colors">회원가입</button>
+            <span className="w-px h-2.5 bg-slate-200"></span>
+            <button className="hover:text-red-600 transition-colors">아이디/비밀번호찾기</button>
+          </div>
+          <div className="flex items-center space-x-2 text-slate-400">
+            <Youtube className="w-4 h-4 cursor-pointer hover:text-red-600 transition-colors" />
+            <Facebook className="w-4 h-4 cursor-pointer hover:text-blue-600 transition-colors" />
+            <Instagram className="w-4 h-4 cursor-pointer hover:text-pink-600 transition-colors" />
+            <MessageSquare className="w-4 h-4 cursor-pointer hover:text-yellow-500 transition-colors" />
+          </div>
+        </div>
+
+        {/* Main Nav */}
+        <nav className="bg-white/90 backdrop-blur-md px-5 md:px-10 py-3 flex justify-between items-center">
+          <div className="flex items-center space-x-8 lg:space-x-12">
+            {/* Logo */}
+            <div className="flex items-center space-x-2 group cursor-pointer">
+              <div className="w-8 h-8 md:w-10 md:h-10 bg-red-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-red-200 group-hover:scale-110 transition-transform">
+                <Sparkles className="w-5 h-5 md:w-6 md:h-6" />
+              </div>
+              <div className="text-xl md:text-2xl font-black text-red-600 italic tracking-tighter">einenglish</div>
+            </div>
+
+            {/* Menu Items */}
+            <div className="hidden lg:flex items-center space-x-6 xl:space-x-8 text-[14px] xl:text-[15px] font-black text-slate-700">
+              <div className="relative group">
+                <button className="hover:text-red-600 transition-colors flex items-center">
+                  무료체험신청
+                  <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full whitespace-nowrap shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                    3,000원 할인
+                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-red-500 rotate-45"></div>
+                  </div>
+                </button>
+              </div>
+              <button className="hover:text-red-600 transition-colors">아인잉글리쉬</button>
+              <button className="hover:text-red-600 transition-colors">교육과정</button>
+              <button className="hover:text-red-600 transition-colors">수강신청하기</button>
+              <button className="hover:text-red-600 transition-colors">성공수강후기</button>
+              <button className="hover:text-red-600 transition-colors">고객센터</button>
+              <div className="relative">
+                <button className="hover:text-red-600 transition-colors flex items-center">
+                  이벤트
+                  <span className="ml-1 w-4 h-4 bg-red-500 text-white text-[9px] flex items-center justify-center rounded-full font-bold">N</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Icons */}
+          <div className="flex items-center space-x-4">
+            <div className="hidden sm:flex flex-col items-center group cursor-pointer">
+              <div className="p-2 rounded-full group-hover:bg-slate-50 transition-colors">
+                <User className="w-6 h-6 text-slate-700" />
+              </div>
+              <span className="text-[10px] font-black text-slate-500 group-hover:text-red-600">마이페이지</span>
+            </div>
+            <button className="lg:hidden p-2 text-slate-700">
+              <div className="w-6 h-0.5 bg-current mb-1.5"></div>
+              <div className="w-6 h-0.5 bg-current mb-1.5"></div>
+              <div className="w-6 h-0.5 bg-current"></div>
+            </button>
+          </div>
+        </nav>
+      </header>
 
       {/* Hero Section */}
       <section className="relative px-5 py-16 md:py-32 text-center max-w-6xl mx-auto overflow-hidden">
@@ -425,14 +496,94 @@ const App = () => {
       </section>
 
       {/* Footer */}
-      <footer className="px-5 py-12 md:py-24 text-center bg-white">
-        <div className="text-3xl md:text-5xl font-black mb-6 md:mb-8 text-slate-200 italic tracking-tighter select-none">einenglish</div>
-        <div className="space-y-1.5 md:space-y-2 mb-8 md:mb-10 text-xs md:text-sm text-slate-400 font-bold opacity-80 leading-relaxed">
-          <p>(주)아인교육  |  대표이사 : 홍길동  |  서울시 구로구 디지털로 31길 31</p>
-          <p>사업자등록번호 : 034-56-00750  |  통신판매신고 : 제2022-서울구로-1595호</p>
-          <p>고객센터 : 1666-8701  |  einenglish@gmail.com</p>
+      <footer className="bg-[#f8f8f8] pt-12 pb-20 px-5 md:px-10">
+        <div className="max-w-7xl mx-auto">
+          {/* Top Links & Social */}
+          <div className="flex flex-col md:flex-row justify-between items-center mb-10 border-b border-slate-200 pb-6">
+            <div className="flex items-center space-x-6 mb-6 md:mb-0 text-[13px] md:text-[15px] font-bold text-slate-700">
+              <button className="hover:text-red-600 transition-colors">이용약관</button>
+              <button className="hover:text-red-600 transition-colors">개인정보처리방침</button>
+            </div>
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-[#ff0000] rounded-full flex items-center justify-center text-white cursor-pointer hover:opacity-80 transition-opacity">
+                <Youtube className="w-4 h-4 fill-current" />
+              </div>
+              <div className="w-8 h-8 bg-[#3b5998] rounded-full flex items-center justify-center text-white cursor-pointer hover:opacity-80 transition-opacity">
+                <Facebook className="w-4 h-4 fill-current" />
+              </div>
+              <div className="w-8 h-8 bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] rounded-full flex items-center justify-center text-white cursor-pointer hover:opacity-80 transition-opacity">
+                <Instagram className="w-4 h-4" />
+              </div>
+              <div className="w-8 h-8 bg-[#3cb371] rounded-full flex items-center justify-center text-white cursor-pointer hover:opacity-80 transition-opacity">
+                <div className="text-[10px] font-black italic">blog</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Company Info */}
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+            <div className="flex flex-col items-start">
+              {/* Logo */}
+              <div className="flex items-center space-x-2 mb-6 opacity-60 grayscale group hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer">
+                <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center text-white">
+                  <Sparkles className="w-5 h-5" />
+                </div>
+                <div className="text-xl font-black text-red-600 italic tracking-tighter">EINENGLISH</div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2 text-[12px] md:text-[13px] text-slate-500 font-medium leading-relaxed">
+                <div className="space-y-1">
+                  <p>상호명 : 아인잉글리쉬 원격평생교육원</p>
+                  <p>주소 : 서울시 구로구 디지털로 30길 31</p>
+                </div>
+                <div className="space-y-1">
+                  <p>대표 : 강민규</p>
+                  <p>사업자등록번호 : 634-98-00756</p>
+                </div>
+                <div className="space-y-1">
+                  <p>이메일 : einenglish3@gmail.com</p>
+                </div>
+                <div className="space-y-1">
+                  <p>통신판매업신고번호 : 제2022-서울구로-1595호</p>
+                </div>
+              </div>
+              
+              <p className="mt-8 text-[12px] text-slate-400 font-medium">
+                © 2022 아인잉글리쉬. All Rights Reserved
+              </p>
+            </div>
+
+            {/* Floating CTA Button (Mobile/Desktop) */}
+            <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-md">
+              <div className="relative group">
+                {/* Tooltip */}
+                <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-red-500 text-white text-[11px] font-black px-4 py-1.5 rounded-full whitespace-nowrap shadow-lg animate-bounce">
+                  2026년 새해에는 반드시 성공하세요! ✨
+                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-red-500 rotate-45"></div>
+                </div>
+                
+                <button className="w-full bg-gradient-to-r from-[#ef4444] to-[#f87171] text-white py-4 md:py-5 rounded-full font-black text-[16px] md:text-[18px] shadow-[0_10px_30px_-5px_rgba(239,68,68,0.5)] flex flex-col items-center justify-center leading-tight hover:scale-[1.02] active:scale-95 transition-all">
+                  <span className="text-[10px] md:text-[12px] opacity-90 mb-0.5">레벨진단 / 학습설계 / 할인혜택</span>
+                  <div className="flex items-center">
+                    <span>체험비 0원 ➜ 지금 신청하기</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            {/* Kakao Talk Floating */}
+            <div className="fixed bottom-8 right-6 z-50">
+              <div className="relative">
+                <div className="w-14 h-14 bg-[#fae100] rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform">
+                  <div className="bg-black rounded-[4px] px-1 py-0.5 text-[8px] font-black text-[#fae100] absolute -top-1 right-0 border-2 border-white">1</div>
+                  <svg className="w-8 h-8 text-[#3c1e1e]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3c-4.97 0-9 3.134-9 7 0 2.497 1.731 4.683 4.415 5.942l-.89 3.27c-.1.365.11.739.467.832.115.03.23.03.342 0l3.87-2.57c.26.018.524.026.796.026 4.97 0 9-3.134 9-7s-4.03-7-9-7z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <p className="text-[11px] md:text-xs font-black text-slate-300 tracking-[0.4em] uppercase">© 2026 Eine English.</p>
       </footer>
 
       {/* Custom Styles with break-keep applied to all text globally */}
