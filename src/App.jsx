@@ -30,10 +30,10 @@ const PriceTable = ({ prices }) => {
   return (
     <div className="mt-6 md:mt-8 pt-5 md:pt-6 border-t-2 border-slate-50">
       <div className="flex items-center justify-between mb-4 md:mb-5 px-1">
-        <h4 className="text-sm md:text-base font-black text-slate-800 flex items-center tracking-tight">
+        <h4 className="text-[15px] md:text-base font-black text-slate-800 flex items-center tracking-tight">
           <CreditCard className="w-4 h-4 md:w-5 md:h-5 mr-1.5 md:mr-2 text-red-600" /> 수강 플랜 안내
         </h4>
-        <span className="text-[11px] md:text-sm text-slate-400 font-bold uppercase tracking-widest">VAT 포함</span>
+        <span className="text-xs md:text-sm text-slate-400 font-bold uppercase tracking-widest">VAT 포함</span>
       </div>
       
       <div className="grid grid-cols-1 gap-3 md:gap-3.5">
@@ -45,11 +45,11 @@ const PriceTable = ({ prices }) => {
             </div>
           )}
           <div className="flex flex-col">
-            <span className="text-[15px] md:text-base font-bold text-slate-700">1개월</span>
-            <span className="text-xs md:text-sm font-bold text-slate-500 mt-0.5 md:mt-1 tracking-tight">회당 {prices.m1.per.toLocaleString()}원</span>
+            <span className="text-[16px] md:text-base font-bold text-slate-700">1개월</span>
+            <span className="text-[13px] md:text-sm font-bold text-slate-500 mt-0.5 md:mt-1 tracking-tight">회당 {prices.m1.per.toLocaleString()}원</span>
           </div>
           <div className="text-right">
-            <span className="text-[17px] md:text-xl font-black text-slate-900 tracking-tighter">{prices.m1.total.toLocaleString()}원</span>
+            <span className="text-[18px] md:text-xl font-black text-slate-900 tracking-tighter">{prices.m1.total.toLocaleString()}원</span>
           </div>
         </div>
         
@@ -59,11 +59,11 @@ const PriceTable = ({ prices }) => {
             {prices.m3.discount}% 할인
           </div>
           <div className="flex flex-col">
-            <span className="text-[15px] md:text-base font-bold text-red-600">3개월</span>
-            <span className="text-xs md:text-sm font-bold text-red-500 mt-0.5 md:mt-1 tracking-tight">회당 {prices.m3.per.toLocaleString()}원</span>
+            <span className="text-[16px] md:text-base font-bold text-red-600">3개월</span>
+            <span className="text-[13px] md:text-sm font-bold text-red-500 mt-0.5 md:mt-1 tracking-tight">회당 {prices.m3.per.toLocaleString()}원</span>
           </div>
           <div className="text-right">
-            <span className="text-[17px] md:text-xl font-black text-red-600 tracking-tighter">{prices.m3.total.toLocaleString()}원</span>
+            <span className="text-[18px] md:text-xl font-black text-red-600 tracking-tighter">{prices.m3.total.toLocaleString()}원</span>
           </div>
         </div>
 
@@ -73,11 +73,11 @@ const PriceTable = ({ prices }) => {
             {prices.m6.discount}% 할인
           </div>
           <div className="flex flex-col">
-            <span className="text-[15px] md:text-base font-bold text-orange-600">6개월</span>
-            <span className="text-xs md:text-sm font-bold text-orange-500 mt-0.5 md:mt-1 tracking-tight">회당 {prices.m6.per.toLocaleString()}원</span>
+            <span className="text-[16px] md:text-base font-bold text-orange-600">6개월</span>
+            <span className="text-[13px] md:text-sm font-bold text-orange-500 mt-0.5 md:mt-1 tracking-tight">회당 {prices.m6.per.toLocaleString()}원</span>
           </div>
           <div className="text-right">
-            <span className="text-[17px] md:text-xl font-black text-orange-600 tracking-tighter">{prices.m6.total.toLocaleString()}원</span>
+            <span className="text-[18px] md:text-xl font-black text-orange-600 tracking-tighter">{prices.m6.total.toLocaleString()}원</span>
           </div>
         </div>
       </div>
@@ -101,15 +101,15 @@ const PlanCard = ({ data, isBest }) => {
         </div>
         <div className="text-right flex flex-col items-end">
           <div className="flex items-baseline justify-end gap-2 mb-2">
-            <span className={`text-[11px] md:text-xs font-black uppercase tracking-widest ${isBest ? 'text-red-500' : 'text-slate-400'}`}>
+            <span className={`text-xs md:text-sm font-black uppercase tracking-widest ${isBest ? 'text-red-500' : 'text-slate-400'}`}>
               {data.tag}
             </span>
-            <h3 className="text-[28px] sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tighter italic">{data.label}</h3>
+            <h3 className="text-[30px] sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tighter italic">{data.label}</h3>
           </div>
           
           <div className="flex flex-wrap gap-1.5 justify-end">
             {data.targets.map((t, idx) => (
-              <span key={idx} className={`text-[11px] md:text-xs font-extrabold px-2.5 py-1 rounded-md border tracking-tight shadow-sm ${t.color}`}>
+              <span key={idx} className={`text-xs md:text-sm font-extrabold px-2.5 py-1 rounded-md border tracking-tight shadow-sm ${t.color}`}>
                 {t.name}
               </span>
             ))}
@@ -119,7 +119,7 @@ const PlanCard = ({ data, isBest }) => {
 
       <div className="mb-auto">
         <div className="bg-slate-900 rounded-xl md:rounded-2xl p-4 md:p-5 mb-5 shadow-inner text-center">
-          <p className="text-[14px] md:text-[16px] font-black text-white leading-snug">
+          <p className="text-[16px] md:text-[17px] font-black text-white leading-snug">
              &quot;{data.benefit}&quot;
           </p>
         </div>
@@ -293,8 +293,8 @@ const App = () => {
           <Sparkles className="w-3.5 h-3.5 md:w-5 md:h-5 mr-1.5 text-red-500" /> 2026 OFFICIAL TUITION
         </div>
         
-        <h1 className="relative z-10 text-[32px] sm:text-4xl md:text-6xl font-black leading-[1.3] md:leading-[1.2] mb-8 md:mb-12 tracking-tighter text-slate-900">
-          <span className="block text-xl md:text-3xl text-slate-500 mb-2 md:mb-4 tracking-tight">하루 커피 한 잔 값이면</span>
+        <h1 className="relative z-10 text-[34px] sm:text-4xl md:text-6xl font-black leading-[1.3] md:leading-[1.2] mb-8 md:mb-12 tracking-tighter text-slate-900">
+          <span className="block text-[22px] md:text-3xl text-slate-500 mb-2 md:mb-4 tracking-tight">하루 커피 한 잔 값이면</span>
           <span className="relative inline-block mb-1">
             <span className="relative z-10 text-red-600 italic pr-1">회당 7,267원,</span>
             <span className="absolute bottom-1 md:bottom-2 left-0 w-full h-3 md:h-5 bg-red-100 -z-10 -skew-x-12"></span>
@@ -304,13 +304,13 @@ const App = () => {
 
         <div className="relative z-10 inline-block mx-2 sm:mx-4 mb-8 md:mb-12 group cursor-default">
           <div className="relative bg-slate-900 text-white px-6 py-5 sm:px-8 sm:py-6 md:px-12 md:py-8 rounded-2xl md:rounded-[2rem] border border-slate-700 shadow-xl">
-            <p className="text-base md:text-xl font-bold tracking-tight">
-              &quot;6개월 수강 시 최대 <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400 text-3xl md:text-5xl font-black ml-1 md:ml-2 drop-shadow-sm">46.2%</span> 특별 할인&quot;
+            <p className="text-[17px] md:text-xl font-bold tracking-tight">
+              &quot;6개월 수강 시 최대 <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400 text-[34px] md:text-5xl font-black ml-1 md:ml-2 drop-shadow-sm">46.2%</span> 특별 할인&quot;
             </p>
           </div>
         </div>
 
-        <p className="relative z-10 text-[13px] md:text-lg text-slate-500 font-bold max-w-[290px] sm:max-w-sm md:max-w-xl mx-auto leading-relaxed px-2 md:px-4">
+        <p className="relative z-10 text-[15px] md:text-lg text-slate-500 font-bold max-w-[320px] sm:max-w-sm md:max-w-xl mx-auto leading-relaxed px-2 md:px-4">
           비싼 수강료에 망설이셨나요?<br className="sm:hidden"/> 상위 1% 원어민 강사진과의 1:1 학습을<br className="hidden sm:block"/> 가장 합리적인 가격으로 시작하세요.
         </p>
 
@@ -322,8 +322,8 @@ const App = () => {
       {/* Benefits Grid */}
       <section className="px-4 md:px-5 py-12 md:py-24 bg-slate-50/70 rounded-[2.5rem] md:rounded-[4rem] mx-3 md:mx-6 border border-slate-100">
         <div className="text-center mb-10 md:mb-16">
-          <h2 className="text-[11px] md:text-sm font-black text-red-600 uppercase tracking-widest mb-1.5 md:mb-2">Membership Perks</h2>
-          <h3 className="text-[22px] sm:text-2xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+          <h2 className="text-xs md:text-sm font-black text-red-600 uppercase tracking-widest mb-1.5 md:mb-2">Membership Perks</h2>
+          <h3 className="text-[24px] sm:text-2xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">
             무료 체험하면 드리는 <span className="underline decoration-red-200 decoration-4 md:decoration-8 underline-offset-4">7가지 혜택</span>
           </h3>
         </div>
@@ -338,9 +338,9 @@ const App = () => {
                 {React.cloneElement(benefit.icon, { className: `w-5 h-5 md:w-8 md:h-8 ${benefit.iconColor}` })}
               </div>
               <div className="flex-1 text-center sm:text-left">
-                <p className={`text-[10px] md:text-sm font-black uppercase tracking-widest mb-0.5 md:mb-1 ${benefit.highlight ? 'text-red-400' : 'text-slate-400'}`}>Benefit 0{benefit.id}</p>
-                <p className="text-[13px] md:text-lg font-black text-slate-900 leading-tight mb-1 md:mb-1 tracking-tight truncate sm:whitespace-normal">{benefit.title}</p>
-                <p className={`text-[12px] md:text-base font-black tracking-tight ${benefit.highlight ? 'text-red-600' : 'text-red-500'}`}>{benefit.desc}</p>
+                <p className={`text-[11px] md:text-sm font-black uppercase tracking-widest mb-0.5 md:mb-1 ${benefit.highlight ? 'text-red-400' : 'text-slate-400'}`}>Benefit 0{benefit.id}</p>
+                <p className="text-[15px] md:text-lg font-black text-slate-900 leading-tight mb-1 md:mb-1 tracking-tight truncate sm:whitespace-normal">{benefit.title}</p>
+                <p className={`text-[14px] md:text-base font-black tracking-tight ${benefit.highlight ? 'text-red-600' : 'text-red-500'}`}>{benefit.desc}</p>
               </div>
             </div>
           ))}
@@ -361,11 +361,12 @@ const App = () => {
                 <span className="text-xs font-black text-amber-900 uppercase tracking-widest">Reward Point System</span>
               </div>
               <h3 className="text-[26px] sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tighter leading-[1.3] mb-3 md:mb-3">
-                차곡차곡 모은 적립금, 결제 금액의 <br />
+                차곡차곡 모은 적립금, <br className="md:hidden" />
+                결제 금액의 <br className="hidden md:block" />
                 <span className="text-white drop-shadow-md underline decoration-amber-500 decoration-4 md:decoration-8 underline-offset-4">최대 30% 추가 할인</span>
               </h3>
-              <p className="text-[14px] md:text-lg font-bold text-amber-900/80 tracking-tight leading-relaxed max-w-lg mx-auto lg:mx-0">
-                아인잉글리쉬만의 특급 적립 제도를 100% 활용하세요.<br className="hidden md:block"/> 다양한 활동으로 포인트를 모아 <span className="text-slate-900 font-black bg-white/60 px-1.5 rounded">더욱 가벼운 수강료</span>를 경험하세요!
+              <p className="text-[15px] md:text-lg font-bold text-amber-900/80 tracking-tight leading-relaxed max-w-lg mx-auto lg:mx-0">
+                아인잉글리쉬만의 특급 적립 제도를<br className="md:hidden" /> 100% 활용하세요.<br className="hidden md:block"/> 다양한 활동으로 포인트를 모아 <span className="text-slate-900 font-black bg-white/60 px-1.5 rounded">더욱 가벼운 수강료</span>를 경험하세요!
               </p>
             </div>
             
@@ -374,7 +375,7 @@ const App = () => {
                 <div className="absolute top-0 right-0 bg-red-500 text-white text-[11px] font-black px-3 py-1 rounded-bl-xl shadow-sm">
                   포인트 혜택
                 </div>
-                <p className="text-[13px] md:text-sm font-black text-slate-400 mb-1.5 tracking-tight mt-1">기존 할인가에서 추가로</p>
+                <p className="text-[14px] md:text-sm font-black text-slate-400 mb-1.5 tracking-tight mt-1">기존 할인가에서 추가로</p>
                 <div className="flex items-baseline justify-center gap-1">
                   <span className="text-4xl md:text-5xl font-black text-red-600 tracking-tighter italic">-30</span>
                   <span className="text-2xl md:text-3xl font-black text-red-600 italic">%</span>
@@ -389,9 +390,9 @@ const App = () => {
                  <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
                    <UserPlus className="w-5 h-5 text-amber-600"/>
                  </div>
-                 <h4 className="font-black text-slate-900 text-[15px] md:text-lg leading-tight">지인 추천<br/>무제한 적립</h4>
+                 <h4 className="font-black text-slate-900 text-[16px] md:text-lg leading-tight">지인 추천<br/>무제한 적립</h4>
                </div>
-               <p className="text-[13px] md:text-[15px] text-slate-600 font-bold leading-relaxed">
+               <p className="text-[14px] md:text-[15px] text-slate-600 font-bold leading-relaxed">
                  친구가 내 추천으로 등록할 때마다 <span className="text-amber-600">횟수 제한 없이</span> 포인트가 적립됩니다.
                </p>
             </div>
@@ -401,9 +402,9 @@ const App = () => {
                  <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
                    <PenTool className="w-5 h-5 text-amber-600"/>
                  </div>
-                 <h4 className="font-black text-slate-900 text-[15px] md:text-lg leading-tight">수강 후기<br/>리뷰 적립</h4>
+                 <h4 className="font-black text-slate-900 text-[16px] md:text-lg leading-tight">수강 후기<br/>리뷰 적립</h4>
                </div>
-               <p className="text-[13px] md:text-[15px] text-slate-600 font-bold leading-relaxed">
+               <p className="text-[14px] md:text-[15px] text-slate-600 font-bold leading-relaxed">
                  수업 후 정성스러운 <span className="text-amber-600">생생한 리뷰</span>를 남겨주시면 감사 포인트가 지급됩니다.
                </p>
             </div>
@@ -413,9 +414,9 @@ const App = () => {
                  <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
                    <TrendingUp className="w-5 h-5 text-amber-600"/>
                  </div>
-                 <h4 className="font-black text-slate-900 text-[15px] md:text-lg leading-tight">재수강<br/>감사 적립</h4>
+                 <h4 className="font-black text-slate-900 text-[16px] md:text-lg leading-tight">재수강<br/>감사 적립</h4>
                </div>
-               <p className="text-[13px] md:text-[15px] text-slate-600 font-bold leading-relaxed">
+               <p className="text-[14px] md:text-[15px] text-slate-600 font-bold leading-relaxed">
                  수강 연장 시 <span className="text-amber-600">재수강 이벤트에 참여</span>하시면 1만원 포인트를 적립해 드립니다.
                </p>
             </div>
@@ -426,8 +427,8 @@ const App = () => {
       {/* Main Pricing Section */}
       <main className="px-5 md:px-6 mt-16 md:mt-24 max-w-5xl mx-auto">
         <div className="text-center mb-10 md:mb-16">
-           <h2 className="text-[28px] sm:text-3xl md:text-5xl font-black italic tracking-tighter uppercase mb-3 md:mb-4 text-slate-900 leading-tight">Pick Your Plan</h2>
-           <p className="text-[13px] sm:text-sm md:text-base font-bold text-slate-500 max-w-[280px] sm:max-w-xs md:max-w-md mx-auto">나에게 꼭 맞는 학습 빈도를 선택하세요.<br className="sm:hidden"/>많이 할수록 혜택은 커집니다.</p>
+           <h2 className="text-[30px] sm:text-3xl md:text-5xl font-black italic tracking-tighter uppercase mb-3 md:mb-4 text-slate-900 leading-tight">Pick Your Plan</h2>
+           <p className="text-[15px] sm:text-base md:text-lg font-bold text-slate-500 max-w-[320px] sm:max-w-xs md:max-w-md mx-auto">나에게 꼭 맞는 학습 빈도를 선택하세요.<br className="sm:hidden"/>많이 할수록 혜택은 커집니다.</p>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-8">
@@ -439,8 +440,8 @@ const App = () => {
 
       {/* Reviews */}
       <section className="px-5 py-20 md:py-32 bg-white text-center">
-        <h2 className="text-xs md:text-sm font-black text-slate-400 uppercase tracking-widest mb-2 md:mb-3">Student Stories</h2>
-        <h3 className="text-[22px] sm:text-2xl md:text-4xl font-black text-slate-900 mb-10 md:mb-16 tracking-tight">수강생이 직접 말하는 <span className="text-red-600 italic">변화</span></h3>
+        <h2 className="text-[13px] md:text-sm font-black text-slate-400 uppercase tracking-widest mb-2 md:mb-3">Student Stories</h2>
+        <h3 className="text-[24px] sm:text-2xl md:text-4xl font-black text-slate-900 mb-10 md:mb-16 tracking-tight">수강생이 직접 말하는 <span className="text-red-600 italic">변화</span></h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto px-1 md:px-2">
           {reviews.map((review, idx) => (
             <div key={idx} className="bg-slate-50 p-6 md:p-10 rounded-2xl md:rounded-[2.5rem] border border-slate-100 text-left relative hover:bg-white hover:shadow-md transition-all">
@@ -448,8 +449,8 @@ const App = () => {
               <div className="flex items-center space-x-1 mb-4 md:mb-5 text-orange-400">
                 {[...Array(review.rating)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 md:w-4 md:h-4 fill-current" />)}
               </div>
-              <p className="text-[14px] md:text-base font-bold text-slate-700 leading-relaxed mb-6 md:mb-8 italic">&quot;{review.content}&quot;</p>
-              <p className="text-xs md:text-sm font-black text-slate-400 uppercase tracking-widest">{review.name}</p>
+              <p className="text-[15px] md:text-base font-bold text-slate-700 leading-relaxed mb-6 md:mb-8 italic">&quot;{review.content}&quot;</p>
+              <p className="text-[13px] md:text-sm font-black text-slate-400 tracking-widest">{review.name}</p>
             </div>
           ))}
         </div>
@@ -476,12 +477,12 @@ const App = () => {
             <span className="text-xs md:text-sm font-bold text-white pl-1.5 md:pl-2 tracking-tight">수강생 만족도 4.9/5.0</span>
           </div>
 
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-5 md:mb-8 tracking-tighter leading-[1.3] text-white">
+          <h2 className="text-[32px] md:text-5xl lg:text-6xl font-black mb-5 md:mb-8 tracking-tighter leading-[1.3] text-white">
             원어민과의 첫 만남, <br className="md:hidden" />설렘으로 바꾸세요
           </h2>
-          <p className="text-[14px] md:text-xl text-slate-300 font-medium leading-relaxed mb-10 md:mb-16 max-w-[300px] md:max-w-lg mx-auto tracking-tight">
+          <p className="text-[16px] md:text-xl text-slate-300 font-medium leading-relaxed mb-10 md:mb-16 max-w-[320px] md:max-w-lg mx-auto tracking-tight">
             고민은 실력 향상을 늦출 뿐입니다.<br/>
-            상위 1% 강사진의 몰입형 1:1 환경을 직접 체험하세요.
+            상위 1% 강사진의 몰입형 1:1 환경을<br className="md:hidden" /> 직접 체험하세요.
           </p>
           
           <div className="w-full max-w-[280px] md:max-w-[360px] mx-auto">
@@ -489,7 +490,7 @@ const App = () => {
                <span>무료체험 신청하기</span>
                <ChevronRight className="w-6 h-6 md:w-8 md:h-8 group-hover:translate-x-1.5 transition-transform" />
              </button>
-             <p className="mt-5 md:mt-8 text-xs md:text-base text-slate-400 font-medium tracking-tight flex justify-center items-center">
+             <p className="mt-5 md:mt-8 text-[13px] md:text-base text-slate-400 font-medium tracking-tight flex justify-center items-center">
                <Sparkles className="w-3.5 h-3.5 md:w-5 md:h-5 text-yellow-400 mr-1.5 md:mr-2" /> <span className="text-slate-200 font-bold">이번 달 선착순 한정</span> <span className="ml-1">무료 혜택</span>
              </p>
           </div>
@@ -501,7 +502,7 @@ const App = () => {
         <div className="max-w-7xl mx-auto">
           {/* Top Links & Social */}
           <div className="flex flex-col md:flex-row justify-between items-center mb-10 border-b border-slate-200 pb-6">
-            <div className="flex items-center space-x-6 mb-6 md:mb-0 text-[13px] md:text-[15px] font-bold text-slate-700">
+            <div className="flex items-center space-x-6 mb-6 md:mb-0 text-[15px] md:text-[15px] font-bold text-slate-700">
               <button className="hover:text-red-600 transition-colors">이용약관</button>
               <button className="hover:text-red-600 transition-colors">개인정보처리방침</button>
             </div>
@@ -532,7 +533,7 @@ const App = () => {
                 <div className="text-xl font-black text-red-600 italic tracking-tighter">EINENGLISH</div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2 text-[12px] md:text-[13px] text-slate-500 font-medium leading-relaxed">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2 text-[13px] md:text-[14px] text-slate-500 font-medium leading-relaxed">
                 <div className="space-y-1">
                   <p>상호명 : 아인잉글리쉬 원격평생교육원</p>
                   <p>주소 : 서울시 구로구 디지털로 30길 31</p>
@@ -549,7 +550,7 @@ const App = () => {
                 </div>
               </div>
               
-              <p className="mt-8 text-[12px] text-slate-400 font-medium">
+              <p className="mt-8 text-[13px] text-slate-400 font-medium">
                 © 2022 아인잉글리쉬. All Rights Reserved
               </p>
             </div>
