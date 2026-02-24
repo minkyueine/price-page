@@ -7,5 +7,5 @@ export default defineConfig(({ mode }) => ({
   plugins: [react(), tailwindcss()],
   // GitHub Pages: base를 레포지토리 이름으로 설정 (예: /price-page/)
   // 로컬: base: '/' 사용
-  base: mode === 'production' && process.env.GH_PAGES ? '/price-page/' : '/',
+  base: '/price-page/',
 }))
