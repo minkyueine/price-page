@@ -54,7 +54,7 @@ const PriceTable = ({ prices }) => (
       <h4 className={s.priceTableTitle}>
         {icons.creditCard(16)} <span style={{ marginLeft: 6 }}>수강 플랜 안내</span>
       </h4>
-      <span className={s.priceTableVat}>VAT 포함</span>
+      <span className={s.priceTableVat}>포함</span>
     </div>
     <div className={s.priceRows}>
       <div className={`${s.priceRow} ${s.priceRow1m}`}>
