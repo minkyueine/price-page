@@ -91,7 +91,11 @@ const PriceTable = ({ prices }) => (
   </div>
 );
 
-const PlanCard = ({ data, isBest }) => (
+const PlanCard = ({ data, isBest }) => {
+  // #region agent log
+  fetch('http://127.0.0.1:7896/ingest/fe0b6995-995b-469c-88cc-ad662b35566e',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'7c6784'},body:JSON.stringify({sessionId:'7c6784',location:'App.jsx:100',message:'PlanCard render',data:{label:data.label,isBest},timestamp:Date.now()})}).catch(()=>{});
+  // #endregion
+  return (
   <div className={`${s.planCard} ${isBest ? s.planCardBest : ''}`}>
     {isBest && (
       <div className={s.planBestBadge}>
@@ -393,6 +397,11 @@ const App = () => {
           <p className={s.pricingDesc}>나에게 꼭 맞는 학습 빈도를 선택하세요. 많이 할수록 혜택은 커집니다.</p>
         </div>
         <div className={s.pricingGrid}>
+          {
+            // #region agent log
+            fetch('http://127.0.0.1:7896/ingest/fe0b6995-995b-469c-88cc-ad662b35566e',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'7c6784'},body:JSON.stringify({sessionId:'7c6784',location:'App.jsx:435',message:'PricingGrid render',data:{planCount:5},timestamp:Date.now()})}).catch(()=>{})
+            // #endregion
+          }
           {[5, 4, 3, 2, 1].map(f => (
             <PlanCard key={f} data={plans[f]} isBest={f === 4} />
           ))}

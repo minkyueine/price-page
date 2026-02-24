@@ -811,7 +811,7 @@
 .pricingGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 /* ===== Plan Card ===== */
@@ -838,7 +838,8 @@
   box-shadow: 0 20px 40px -15px rgba(220,38,38,0.2);
   transform: scale(1.02);
   z-index: 10;
-  margin-top: 0.75rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .planBestBadge {
@@ -1649,7 +1650,7 @@
   .pricingDesc { font-size: 1.125rem; max-width: 28rem; }
   .pricingGrid { gap: 2rem; }
   .planCard { padding: 2rem; border-radius: 2.5rem; }
-  .planCardBest { margin-top: 0; }
+  .planCardBest { margin-top: 0; margin-bottom: 0; }
   .planBestBadge { top: -1.25rem; font-size: 14px; padding: 8px 1.75rem; }
   .planTop { margin-bottom: 1.75rem; }
   .planIconWrap { padding: 1rem; border-radius: 1rem; }
