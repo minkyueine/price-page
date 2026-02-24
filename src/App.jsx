@@ -284,7 +284,7 @@ const App = () => {
         <div className={s.heroDiscountBox}>
           <div className={s.heroDiscountInner}>
             <p className={s.heroDiscountText}>
-              &quot;6개월 수강 시 최대 <span className={s.heroDiscountNumber}>46.2%</span> 특별 할인&quot;
+              &quot;6개월 수강 시 <br className={s.brMobileOnly} /> 최대 <span className={s.heroDiscountNumber}>46.2%</span> 특별 할인&quot;
             </p>
           </div>
         </div>
