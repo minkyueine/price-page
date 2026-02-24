@@ -1,149 +1,142 @@
 import React from 'react';
-import { 
-  ChevronRight, 
-  Check, 
-  CreditCard, 
-  Sparkles, 
-  TrendingUp, 
-  Zap, 
-  Target, 
-  Flame, 
-  Heart, 
-  Calendar,
-  ArrowDown,
-  Gift,
-  UserPlus,
-  PenTool,
-  Wallet,
-  Star,
-  Quote,
-  Coins,
-  Youtube,
-  Facebook,
-  Instagram,
-  User,
-  MessageSquare
-} from 'lucide-react';
+import s from './App.module.css';
 
-// 기간별 가격 정보 컴포넌트 (정렬 완벽 맞춤)
-const PriceTable = ({ prices }) => {
-  return (
-    <div className="mt-6 md:mt-8 pt-5 md:pt-6 border-t-2 border-slate-50">
-      <div className="flex items-center justify-between mb-4 md:mb-5 px-1">
-        <h4 className="text-[15px] md:text-base font-black text-slate-800 flex items-center tracking-tight">
-          <CreditCard className="w-4 h-4 md:w-5 md:h-5 mr-1.5 md:mr-2 text-red-600" /> 수강 플랜 안내
-        </h4>
-        <span className="text-xs md:text-sm text-slate-400 font-bold uppercase tracking-widest">VAT 포함</span>
+const Icon = ({ d, size = 24, fill = "none", stroke = "currentColor", strokeWidth = 2, className = "", style = {} }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill={fill} stroke={stroke} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className} style={style}>
+    {Array.isArray(d) ? d.map((p, i) => <path key={i} d={p} />) : <path d={d} />}
+  </svg>
+);
+
+const IconRaw = ({ children, size = 24, fill = "none", stroke = "currentColor", strokeWidth = 2, className = "", style = {} }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill={fill} stroke={stroke} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className} style={style}>
+    {children}
+  </svg>
+);
+
+const icons = {
+  sparkles: (sz = 24, cls = "") => <IconRaw size={sz} className={cls}><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></IconRaw>,
+  chevronRight: (sz = 24, cls = "") => <Icon d="M9 18l6-6-6-6" size={sz} className={cls} />,
+  check: (sz = 12, cls = "") => <Icon d="M20 6L9 17l-5-5" size={sz} className={cls} />,
+  creditCard: (sz = 20, cls = "") => <IconRaw size={sz} className={cls}><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></IconRaw>,
+  trendingUp: (sz = 20, cls = "") => <IconRaw size={sz} className={cls}><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></IconRaw>,
+  zap: (sz = 28, cls = "") => <Icon d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" size={sz} className={cls} />,
+  target: (sz = 28, cls = "") => <IconRaw size={sz} className={cls}><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></IconRaw>,
+  flame: (sz = 28, cls = "") => <Icon d={["M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"]} size={sz} className={cls} />,
+  heart: (sz = 28, cls = "") => <Icon d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" size={sz} className={cls} />,
+  calendar: (sz = 28, cls = "") => <IconRaw size={sz} className={cls}><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></IconRaw>,
+  arrowDown: (sz = 24, cls = "") => <IconRaw size={sz} className={cls}><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></IconRaw>,
+  gift: (sz = 20, cls = "") => <IconRaw size={sz} className={cls}><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></IconRaw>,
+  userPlus: (sz = 20, cls = "") => <IconRaw size={sz} className={cls}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></IconRaw>,
+  penTool: (sz = 20, cls = "") => <IconRaw size={sz} className={cls}><path d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z"/><path d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18"/><path d="m2.7 21.3 6.573-6.573"/><circle cx="11" cy="11" r="2"/></IconRaw>,
+  wallet: (sz = 20, cls = "") => <IconRaw size={sz} className={cls}><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></IconRaw>,
+  star: (sz = 14, cls = "") => <Icon d="M11.525.464a.5.5 0 0 1 .95 0l2.107 6.482a.5.5 0 0 0 .475.345h6.817a.5.5 0 0 1 .294.905l-5.515 4.007a.5.5 0 0 0-.181.559l2.107 6.482a.5.5 0 0 1-.77.559l-5.515-4.007a.5.5 0 0 0-.588 0l-5.515 4.007a.5.5 0 0 1-.77-.559l2.107-6.482a.5.5 0 0 0-.181-.559L1.332 8.196a.5.5 0 0 1 .294-.905h6.817a.5.5 0 0 0 .475-.345z" size={sz} fill="currentColor" stroke="none" className={cls} />,
+  quote: (sz = 32, cls = "") => <IconRaw size={sz} fill="none" className={cls}><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></IconRaw>,
+  coins: (sz = 256, cls = "") => <IconRaw size={sz} className={cls}><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></IconRaw>,
+  youtube: (sz = 16, cls = "") => <IconRaw size={sz} className={cls} fill="currentColor" stroke="none"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2 29 29 0 0 0-.46 5.25 29 29 0 0 0 .46 5.25 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.25z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#fff" stroke="none"/></IconRaw>,
+  facebook: (sz = 16, cls = "") => <IconRaw size={sz} className={cls} fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></IconRaw>,
+  instagram: (sz = 16, cls = "") => <IconRaw size={sz} className={cls}><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></IconRaw>,
+  user: (sz = 24, cls = "") => <IconRaw size={sz} className={cls}><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></IconRaw>,
+  messageSquare: (sz = 16, cls = "") => <IconRaw size={sz} className={cls}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></IconRaw>,
+};
+
+const targetClassMap = {
+  "bg-pink-50 text-pink-500 border-pink-100": s.targetPink,
+  "bg-slate-50 text-slate-500 border-slate-200": s.targetSlateLight,
+  "bg-blue-50 text-blue-600 border-blue-100": s.targetBlue,
+  "bg-slate-50 text-slate-600 border-slate-200": s.targetSlateDark,
+  "bg-green-50 text-green-600 border-green-100": s.targetGreen,
+  "bg-purple-50 text-purple-600 border-purple-100": s.targetPurple,
+};
+
+const PriceTable = ({ prices }) => (
+  <div className={s.priceTable}>
+    <div className={s.priceTableHeader}>
+      <h4 className={s.priceTableTitle}>
+        {icons.creditCard(16)} <span style={{ marginLeft: 6 }}>수강 플랜 안내</span>
+      </h4>
+      <span className={s.priceTableVat}>VAT 포함</span>
+    </div>
+    <div className={s.priceRows}>
+      <div className={`${s.priceRow} ${s.priceRow1m}`}>
+        {prices.m1.discount > 0 && <div className={`${s.priceDiscount} ${s.priceDiscountSlate}`}>{prices.m1.discount}% 할인</div>}
+        <div>
+          <span className={`${s.pricePeriod} ${s.colorSlate700}`}>1개월</span>
+          <div className={`${s.pricePer} ${s.colorSlate500}`}>회당 {prices.m1.per.toLocaleString()}원</div>
+        </div>
+        <div style={{ textAlign: "right" }}>
+          <span className={`${s.priceTotal} ${s.colorSlate900}`}>{prices.m1.total.toLocaleString()}원</span>
+        </div>
       </div>
-      
-      <div className="grid grid-cols-1 gap-3 md:gap-3.5">
-        {/* 1개월 */}
-        <div className="flex justify-between items-center bg-slate-50/50 p-4 md:p-5 rounded-2xl border border-slate-100 relative overflow-hidden group hover:border-slate-200 transition-all">
-          {prices.m1.discount > 0 && (
-            <div className="absolute top-0 right-0 px-2.5 md:px-3 py-1 md:py-1.5 bg-slate-500 text-white text-[11px] md:text-xs font-black rounded-bl-xl shadow-sm">
-              {prices.m1.discount}% 할인
-            </div>
-          )}
-          <div className="flex flex-col">
-            <span className="text-[16px] md:text-base font-bold text-slate-700">1개월</span>
-            <span className="text-[13px] md:text-sm font-bold text-slate-500 mt-0.5 md:mt-1 tracking-tight">회당 {prices.m1.per.toLocaleString()}원</span>
-          </div>
-          <div className="text-right">
-            <span className="text-[18px] md:text-xl font-black text-slate-900 tracking-tighter">{prices.m1.total.toLocaleString()}원</span>
-          </div>
+      <div className={`${s.priceRow} ${s.priceRow3m}`}>
+        <div className={`${s.priceDiscount} ${s.priceDiscountRed}`}>{prices.m3.discount}% 할인</div>
+        <div>
+          <span className={`${s.pricePeriod} ${s.colorRed600}`}>3개월</span>
+          <div className={`${s.pricePer} ${s.colorRed500}`}>회당 {prices.m3.per.toLocaleString()}원</div>
         </div>
-        
-        {/* 3개월 */}
-        <div className="flex justify-between items-center bg-red-50/50 p-4 md:p-5 rounded-2xl border border-red-100 relative overflow-hidden group">
-          <div className="absolute top-0 right-0 px-2.5 md:px-3 py-1 md:py-1.5 bg-red-600 text-white text-[11px] md:text-xs font-black rounded-bl-xl shadow-sm">
-            {prices.m3.discount}% 할인
-          </div>
-          <div className="flex flex-col">
-            <span className="text-[16px] md:text-base font-bold text-red-600">3개월</span>
-            <span className="text-[13px] md:text-sm font-bold text-red-500 mt-0.5 md:mt-1 tracking-tight">회당 {prices.m3.per.toLocaleString()}원</span>
-          </div>
-          <div className="text-right">
-            <span className="text-[18px] md:text-xl font-black text-red-600 tracking-tighter">{prices.m3.total.toLocaleString()}원</span>
-          </div>
+        <div style={{ textAlign: "right" }}>
+          <span className={`${s.priceTotal} ${s.colorRed600}`}>{prices.m3.total.toLocaleString()}원</span>
         </div>
-
-        {/* 6개월 */}
-        <div className="flex justify-between items-center bg-orange-50/50 p-4 md:p-5 rounded-2xl border border-orange-200 relative overflow-hidden group">
-          <div className="absolute top-0 right-0 px-2.5 md:px-3 py-1 md:py-1.5 bg-orange-500 text-white text-[11px] md:text-xs font-black rounded-bl-xl shadow-sm">
-            {prices.m6.discount}% 할인
-          </div>
-          <div className="flex flex-col">
-            <span className="text-[16px] md:text-base font-bold text-orange-600">6개월</span>
-            <span className="text-[13px] md:text-sm font-bold text-orange-500 mt-0.5 md:mt-1 tracking-tight">회당 {prices.m6.per.toLocaleString()}원</span>
-          </div>
-          <div className="text-right">
-            <span className="text-[18px] md:text-xl font-black text-orange-600 tracking-tighter">{prices.m6.total.toLocaleString()}원</span>
-          </div>
+      </div>
+      <div className={`${s.priceRow} ${s.priceRow6m}`}>
+        <div className={`${s.priceDiscount} ${s.priceDiscountOrange}`}>{prices.m6.discount}% 할인</div>
+        <div>
+          <span className={`${s.pricePeriod} ${s.colorOrange600}`}>6개월</span>
+          <div className={`${s.pricePer} ${s.colorOrange500}`}>회당 {prices.m6.per.toLocaleString()}원</div>
+        </div>
+        <div style={{ textAlign: "right" }}>
+          <span className={`${s.priceTotal} ${s.colorOrange600}`}>{prices.m6.total.toLocaleString()}원</span>
         </div>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
-// 개별 플랜 카드
-const PlanCard = ({ data, isBest }) => {
-  return (
-    <div className={`relative bg-white rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-8 transition-all duration-300 flex flex-col h-full ${isBest ? 'border-[3px] border-red-500 shadow-[0_20px_40px_-15px_rgba(220,38,38,0.2)] scale-[1.02] z-10 mt-3 md:mt-0' : 'border border-slate-100 shadow-lg hover:shadow-xl'}`}>
-      {isBest && (
-        <div className="absolute -top-4 md:-top-5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-red-600 to-orange-500 text-white px-5 md:px-7 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-black shadow-md z-10 whitespace-nowrap tracking-tight ring-4 ring-white">
-          <Sparkles className="w-3.5 h-3.5 mr-1.5 inline-block animate-pulse" /> 직장인/학생 선호도 1위
-        </div>
-      )}
-
-      <div className="flex items-start justify-between mb-5 md:mb-7">
-        <div className={`p-3 md:p-4 rounded-xl md:rounded-2xl shrink-0 ${isBest ? 'bg-red-50 text-red-600' : 'bg-slate-50 text-slate-400'}`}>
-          {React.cloneElement(data.icon, { className: "w-7 h-7 md:w-8 md:h-8" })}
-        </div>
-        <div className="text-right flex flex-col items-end">
-          <div className="flex items-baseline justify-end gap-2 mb-2">
-            <span className={`text-xs md:text-sm font-black uppercase tracking-widest ${isBest ? 'text-red-500' : 'text-slate-400'}`}>
-              {data.tag}
-            </span>
-            <h3 className="text-[30px] sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tighter italic">{data.label}</h3>
-          </div>
-          
-          <div className="flex flex-wrap gap-1.5 justify-end">
-            {data.targets.map((t, idx) => (
-              <span key={idx} className={`text-xs md:text-sm font-extrabold px-2.5 py-1 rounded-md border tracking-tight shadow-sm ${t.color}`}>
-                {t.name}
-              </span>
-            ))}
-          </div>
-        </div>
+const PlanCard = ({ data, isBest }) => (
+  <div className={`${s.planCard} ${isBest ? s.planCardBest : ''}`}>
+    {isBest && (
+      <div className={s.planBestBadge}>
+        {icons.sparkles(14)} 직장인/학생 선호도 1위
       </div>
-
-      <div className="mb-auto">
-        <div className="bg-slate-900 rounded-xl md:rounded-2xl p-4 md:p-5 mb-5 shadow-inner text-center">
-          <p className="text-[16px] md:text-[17px] font-black text-white leading-snug">
-             &quot;{data.benefit}&quot;
-          </p>
+    )}
+    <div className={s.planTop}>
+      <div className={`${s.planIconWrap} ${isBest ? s.planIconBest : s.planIconDefault}`}>
+        {data.iconEl}
+      </div>
+      <div className={s.planRight}>
+        <div className={s.planTagRow}>
+          <span className={`${s.planTag} ${isBest ? s.planTagBest : ''}`}>{data.tag}</span>
+          <h3 className={s.planLabel}>{data.label}</h3>
         </div>
-        <div className="space-y-3 px-1 md:px-2">
-          {data.pros.map((pro, i) => (
-            <div key={i} className="flex items-center space-x-3 text-[15px] md:text-[16px] font-bold text-slate-700 leading-snug">
-              <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-red-100 flex items-center justify-center shrink-0">
-                <Check className="w-3 h-3 text-red-600" />
-              </div>
-              <span>{pro}</span>
-            </div>
+        <div className={s.planTargets}>
+          {data.targets.map((t, idx) => (
+            <span key={idx} className={`${s.planTarget} ${targetClassMap[t.color] || ''}`}>{t.name}</span>
           ))}
         </div>
       </div>
-
-      <PriceTable prices={data.prices} />
     </div>
-  );
-};
+    <div className={s.planBody}>
+      <div className={s.planBenefitBox}>
+        <p className={s.planBenefitText}>&quot;{data.benefit}&quot;</p>
+      </div>
+      <div className={s.planPros}>
+        {data.pros.map((pro, i) => (
+          <div key={i} className={s.planPro}>
+            <div className={s.planProIcon}>
+              {icons.check(12, "")}
+            </div>
+            <span>{pro}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+    <PriceTable prices={data.prices} />
+  </div>
+);
 
 const App = () => {
   const plans = {
     5: {
-      label: "주 5회", tag: "IMMERSION", icon: <Flame />, benefit: "학습 효율이 극대화되는 황금 주기",
+      label: "주 5회", tag: "IMMERSION", iconEl: icons.flame(28), benefit: "학습 효율이 극대화되는 황금 주기",
       targets: [
         { name: "유아·초등 강추", color: "bg-pink-50 text-pink-500 border-pink-100" },
         { name: "성인 집중", color: "bg-slate-50 text-slate-500 border-slate-200" }
@@ -152,7 +145,7 @@ const App = () => {
       prices: { m1: { total: 169000, per: 8450, discount: 37.4 }, m3: { total: 471500, per: 7858, discount: 41.8 }, m6: { total: 872000, per: 7267, discount: 46.2 } }
     },
     4: {
-      label: "주 4회", tag: "INTENSIVE", icon: <Zap />, benefit: "단기간 실력 완성 집중 트레이닝",
+      label: "주 4회", tag: "INTENSIVE", iconEl: icons.zap(28), benefit: "단기간 실력 완성 집중 트레이닝",
       targets: [
         { name: "직장인·학생 추천", color: "bg-blue-50 text-blue-600 border-blue-100" },
         { name: "면접·비즈니스 대비", color: "bg-slate-50 text-slate-600 border-slate-200" }
@@ -161,7 +154,7 @@ const App = () => {
       prices: { m1: { total: 149000, per: 9313, discount: 30.7 }, m3: { total: 415700, per: 8660, discount: 35.9 }, m6: { total: 768800, per: 8008, discount: 41.2 } }
     },
     3: {
-      label: "주 3회", tag: "SIGNATURE", icon: <Target />, benefit: "국내에서 경험하는 1:1 어학연수",
+      label: "주 3회", tag: "SIGNATURE", iconEl: icons.target(28), benefit: "국내에서 경험하는 1:1 어학연수",
       targets: [
         { name: "유아·초등", color: "bg-pink-50 text-pink-500 border-pink-100" },
         { name: "중·고등", color: "bg-green-50 text-green-600 border-green-100" },
@@ -171,7 +164,7 @@ const App = () => {
       prices: { m1: { total: 129000, per: 10750, discount: 20.4 }, m3: { total: 359900, per: 9997, discount: 25.9 }, m6: { total: 665600, per: 9244, discount: 31.5 } }
     },
     2: {
-      label: "주 2회", tag: "STEADY", icon: <Calendar />, benefit: "일상과 공부의 조화를 이루는 습관",
+      label: "주 2회", tag: "STEADY", iconEl: icons.calendar(28), benefit: "일상과 공부의 조화를 이루는 습관",
       targets: [
         { name: "중·고등", color: "bg-green-50 text-green-600 border-green-100" },
         { name: "성인 루틴유지", color: "bg-slate-50 text-slate-600 border-slate-200" }
@@ -180,7 +173,7 @@ const App = () => {
       prices: { m1: { total: 94000, per: 11750, discount: 13 }, m3: { total: 262300, per: 10929, discount: 19.1 }, m6: { total: 485000, per: 10104, discount: 25.1 } }
     },
     1: {
-      label: "주 1회", tag: "LIGHT", icon: <Heart />, benefit: "영어의 감을 유지하는 꾸준한 관리",
+      label: "주 1회", tag: "LIGHT", iconEl: icons.heart(28), benefit: "영어의 감을 유지하는 꾸준한 관리",
       targets: [
         { name: "전 연령 (유지용)", color: "bg-purple-50 text-purple-600 border-purple-100" }
       ],
@@ -190,13 +183,13 @@ const App = () => {
   };
 
   const eventBenefits = [
-    { id: 1, title: "무료체험", desc: "3,000원 할인", icon: <Gift />, iconColor: "text-red-600", iconBg: "bg-red-50" },
-    { id: 2, title: "장기 수강", desc: "최대 46.2% 할인", icon: <Flame />, iconColor: "text-white", iconBg: "bg-gradient-to-br from-red-500 to-orange-500", highlight: true },
-    { id: 3, title: "신규 등록", desc: "추가 포인트", icon: <CreditCard />, iconColor: "text-blue-600", iconBg: "bg-blue-50" },
-    { id: 4, title: "재수강", desc: "적립 포인트", icon: <TrendingUp />, iconColor: "text-green-600", iconBg: "bg-green-50" },
-    { id: 5, title: "지인 추천", desc: "소개 포인트", icon: <UserPlus />, iconColor: "text-purple-600", iconBg: "bg-purple-50" },
-    { id: 6, title: "수강 후기", desc: "리뷰 포인트", icon: <PenTool />, iconColor: "text-teal-600", iconBg: "bg-teal-50" },
-    { id: 7, title: "카드 혜택", desc: "무이자 할부", icon: <Wallet />, iconColor: "text-slate-700", iconBg: "bg-slate-200" },
+    { id: 1, title: "무료체험", desc: "3,000원 할인", iconEl: icons.gift(20), iconBg: "#fef2f2", iconColor: "#dc2626" },
+    { id: 2, title: "장기 수강", desc: "최대 46.2% 할인", iconEl: icons.flame(20), iconBg: "linear-gradient(to bottom right, #ef4444, #f97316)", iconColor: "#fff", highlight: true },
+    { id: 3, title: "신규 등록", desc: "추가 포인트", iconEl: icons.creditCard(20), iconBg: "#eff6ff", iconColor: "#2563eb" },
+    { id: 4, title: "재수강", desc: "적립 포인트", iconEl: icons.trendingUp(20), iconBg: "#f0fdf4", iconColor: "#16a34a" },
+    { id: 5, title: "지인 추천", desc: "소개 포인트", iconEl: icons.userPlus(20), iconBg: "#faf5ff", iconColor: "#9333ea" },
+    { id: 6, title: "수강 후기", desc: "리뷰 포인트", iconEl: icons.penTool(20), iconBg: "#f0fdfa", iconColor: "#0d9488" },
+    { id: 7, title: "카드 혜택", desc: "무이자 할부", iconEl: icons.wallet(20), iconBg: "#e2e8f0", iconColor: "#334155" },
   ];
 
   const reviews = [
@@ -206,141 +199,123 @@ const App = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900 pb-20 overflow-x-hidden selection:bg-red-100">
+    <div className={s.root}>
       {/* Navigation */}
-      <header className="sticky top-0 z-[100] bg-white border-b border-slate-100 shadow-sm">
-        {/* Top Bar */}
-        <div className="hidden md:flex justify-end items-center px-10 py-2 space-x-4 border-b border-slate-50">
-          <div className="flex items-center space-x-3 text-[11px] font-bold text-slate-500">
-            <button className="hover:text-red-600 transition-colors">로그인</button>
-            <span className="w-px h-2.5 bg-slate-200"></span>
-            <button className="hover:text-red-600 transition-colors">회원가입</button>
-            <span className="w-px h-2.5 bg-slate-200"></span>
-            <button className="hover:text-red-600 transition-colors">아이디/비밀번호찾기</button>
+      <header className={s.header}>
+        <div className={s.topBar}>
+          <div className={s.topBarLinks}>
+            <button>로그인</button>
+            <span className={s.topBarDivider} />
+            <button>회원가입</button>
+            <span className={s.topBarDivider} />
+            <button>아이디/비밀번호찾기</button>
           </div>
-          <div className="flex items-center space-x-2 text-slate-400">
-            <Youtube className="w-4 h-4 cursor-pointer hover:text-red-600 transition-colors" />
-            <Facebook className="w-4 h-4 cursor-pointer hover:text-blue-600 transition-colors" />
-            <Instagram className="w-4 h-4 cursor-pointer hover:text-pink-600 transition-colors" />
-            <MessageSquare className="w-4 h-4 cursor-pointer hover:text-yellow-500 transition-colors" />
+          <div className={s.topBarSocial}>
+            {icons.youtube(16)}
+            {icons.facebook(16)}
+            {icons.instagram(16)}
+            {icons.messageSquare(16)}
           </div>
         </div>
 
-        {/* Main Nav */}
-        <nav className="bg-white/90 backdrop-blur-md px-5 md:px-10 py-3 flex justify-between items-center">
-          <div className="flex items-center space-x-8 lg:space-x-12">
-            {/* Logo */}
-            <div className="flex items-center space-x-2 group cursor-pointer">
-              <div className="w-8 h-8 md:w-10 md:h-10 bg-red-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-red-200 group-hover:scale-110 transition-transform">
-                <Sparkles className="w-5 h-5 md:w-6 md:h-6" />
-              </div>
-              <div className="text-xl md:text-2xl font-black text-red-600 italic tracking-tighter">einenglish</div>
+        <nav className={s.nav}>
+          <div className={s.navLeft}>
+            <div className={s.logo}>
+              <div className={s.logoIcon}>{icons.sparkles(20)}</div>
+              <div className={s.logoText}>einenglish</div>
             </div>
-
-            {/* Menu Items */}
-            <div className="hidden lg:flex items-center space-x-6 xl:space-x-8 text-[14px] xl:text-[15px] font-black text-slate-700">
-              <div className="relative group">
-                <button className="hover:text-red-600 transition-colors flex items-center">
+            <div className={s.menuItems}>
+              <div className={s.menuItemFree}>
+                <button>
                   무료체험신청
-                  <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full whitespace-nowrap shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className={s.menuTooltip}>
                     3,000원 할인
-                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-red-500 rotate-45"></div>
+                    <div className={s.menuTooltipArrow} />
                   </div>
                 </button>
               </div>
-              <button className="hover:text-red-600 transition-colors">아인잉글리쉬</button>
-              <button className="hover:text-red-600 transition-colors">교육과정</button>
-              <button className="hover:text-red-600 transition-colors">수강신청하기</button>
-              <button className="hover:text-red-600 transition-colors">성공수강후기</button>
-              <button className="hover:text-red-600 transition-colors">고객센터</button>
-              <div className="relative">
-                <button className="hover:text-red-600 transition-colors flex items-center">
-                  이벤트
-                  <span className="ml-1 w-4 h-4 bg-red-500 text-white text-[9px] flex items-center justify-center rounded-full font-bold">N</span>
-                </button>
+              <button>아인잉글리쉬</button>
+              <button>교육과정</button>
+              <button>수강신청하기</button>
+              <button>성공수강후기</button>
+              <button>고객센터</button>
+              <div>
+                <button className={s.eventBadge}>이벤트<span className={s.eventDot}>N</span></button>
               </div>
             </div>
           </div>
-
-          {/* Right Icons */}
-          <div className="flex items-center space-x-4">
-            <div className="hidden sm:flex flex-col items-center group cursor-pointer">
-              <div className="p-2 rounded-full group-hover:bg-slate-50 transition-colors">
-                <User className="w-6 h-6 text-slate-700" />
-              </div>
-              <span className="text-[10px] font-black text-slate-500 group-hover:text-red-600">마이페이지</span>
+          <div className={s.navRight}>
+            <div className={s.myPage}>
+              <div className={s.myPageIcon}>{icons.user(24)}</div>
+              <span className={s.myPageLabel}>마이페이지</span>
             </div>
-            <button className="lg:hidden p-2 text-slate-700">
-              <div className="w-6 h-0.5 bg-current mb-1.5"></div>
-              <div className="w-6 h-0.5 bg-current mb-1.5"></div>
-              <div className="w-6 h-0.5 bg-current"></div>
+            <button className={s.hamburger}>
+              <div className={s.hamburgerLine} />
+              <div className={s.hamburgerLine} />
+              <div className={s.hamburgerLine} />
             </button>
           </div>
         </nav>
       </header>
 
       {/* Hero Section */}
-      <section className="relative px-5 py-16 md:py-32 text-center max-w-6xl mx-auto overflow-hidden">
-        {/* Floating Images */}
-        <div className="absolute top-6 md:top-12 right-[-20px] md:right-4 lg:right-12 w-24 h-24 sm:w-32 sm:h-32 md:w-56 md:h-56 lg:w-64 lg:h-64 bg-white p-1.5 md:p-3 rounded-xl md:rounded-[2rem] shadow-xl rotate-12 md:rotate-6 opacity-30 sm:opacity-60 md:opacity-100 pointer-events-none z-0 hover:rotate-12 hover:scale-105 transition-all duration-700">
-          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80" alt="study with coffee" className="w-full h-full object-cover rounded-lg md:rounded-[1.5rem]" />
+      <section className={s.hero}>
+        <div className={s.floatingImgRight}>
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80" alt="study" className={s.floatingImg} />
         </div>
-        <div className="absolute bottom-10 md:bottom-16 left-[-20px] md:left-4 lg:left-12 w-20 h-20 sm:w-28 sm:h-28 md:w-48 md:h-48 lg:w-56 lg:h-56 bg-white p-1.5 md:p-3 rounded-xl md:rounded-[2rem] shadow-xl -rotate-12 md:-rotate-6 opacity-30 sm:opacity-60 md:opacity-100 pointer-events-none z-0 hover:-rotate-12 hover:scale-105 transition-all duration-700">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="friendly tutor" className="w-full h-full object-cover rounded-lg md:rounded-[1.5rem]" />
+        <div className={s.floatingImgLeft}>
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="tutor" className={s.floatingImg} />
         </div>
 
-        <div className="relative z-10 inline-flex items-center bg-white border border-red-100 text-red-600 text-xs md:text-sm font-black px-4 md:px-5 py-1.5 md:py-2 rounded-full mb-6 md:mb-10 tracking-widest shadow-sm">
-          <Sparkles className="w-3.5 h-3.5 md:w-5 md:h-5 mr-1.5 text-red-500" /> 2026 OFFICIAL TUITION
+        <div className={s.heroBadge}>
+          {icons.sparkles(14)} <span style={{ marginLeft: 6 }}>2026 OFFICIAL TUITION</span>
         </div>
-        
-        <h1 className="relative z-10 text-[34px] sm:text-4xl md:text-6xl font-black leading-[1.3] md:leading-[1.2] mb-8 md:mb-12 tracking-tighter text-slate-900">
-          <span className="block text-[22px] md:text-3xl text-slate-500 mb-2 md:mb-4 tracking-tight">하루 커피 한 잔 값이면</span>
-          <span className="relative inline-block mb-1">
-            <span className="relative z-10 text-red-600 italic pr-1">회당 7,267원,</span>
-            <span className="absolute bottom-1 md:bottom-2 left-0 w-full h-3 md:h-5 bg-red-100 -z-10 -skew-x-12"></span>
-          </span><br className="hidden sm:block" />
-          <span className="mt-1 sm:mt-2 block sm:inline md:mt-0">원어민 1:1 과외 끝.</span>
+
+        <h1 className={s.heroTitle}>
+          <span className={s.heroSubtitle}>하루 커피 한 잔 값이면</span>
+          <span className={s.heroPriceWrap}>
+            <span className={s.heroPrice}>회당 7,267원,</span>
+            <span className={s.heroPriceUnderline} />
+          </span>
+          <br className={s.smHide} />
+          <span className={s.heroEnd}>원어민 1:1 과외 끝.</span>
         </h1>
 
-        <div className="relative z-10 inline-block mx-2 sm:mx-4 mb-8 md:mb-12 group cursor-default">
-          <div className="relative bg-slate-900 text-white px-6 py-5 sm:px-8 sm:py-6 md:px-12 md:py-8 rounded-2xl md:rounded-[2rem] border border-slate-700 shadow-xl">
-            <p className="text-[17px] md:text-xl font-bold tracking-tight">
-              &quot;6개월 수강 시 최대 <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400 text-[34px] md:text-5xl font-black ml-1 md:ml-2 drop-shadow-sm">46.2%</span> 특별 할인&quot;
+        <div className={s.heroDiscountBox}>
+          <div className={s.heroDiscountInner}>
+            <p className={s.heroDiscountText}>
+              &quot;6개월 수강 시 최대 <span className={s.heroDiscountNumber}>46.2%</span> 특별 할인&quot;
             </p>
           </div>
         </div>
 
-        <p className="relative z-10 text-[15px] md:text-lg text-slate-500 font-bold max-w-[320px] sm:max-w-sm md:max-w-xl mx-auto leading-relaxed px-2 md:px-4">
-          비싼 수강료에 망설이셨나요?<br className="sm:hidden"/> 상위 1% 원어민 강사진과의 1:1 학습을<br className="hidden sm:block"/> 가장 합리적인 가격으로 시작하세요.
+        <p className={s.heroDesc}>
+          비싼 수강료에 망설이셨나요?<br className={s.brSmHide} /> 상위 1% 원어민 강사진과의 1:1 학습을 가장 합리적인 가격으로 시작하세요.
         </p>
 
-        <div className="relative z-10 mt-10 md:mt-16 flex justify-center animate-bounce opacity-40">
-          <ArrowDown className="w-6 h-6 md:w-8 md:h-8 text-slate-500" />
+        <div className={s.heroArrow}>
+          {icons.arrowDown(24)}
         </div>
       </section>
 
       {/* Benefits Grid */}
-      <section className="px-4 md:px-5 py-12 md:py-24 bg-slate-50/70 rounded-[2.5rem] md:rounded-[4rem] mx-3 md:mx-6 border border-slate-100">
-        <div className="text-center mb-10 md:mb-16">
-          <h2 className="text-xs md:text-sm font-black text-red-600 uppercase tracking-widest mb-1.5 md:mb-2">Membership Perks</h2>
-          <h3 className="text-[24px] sm:text-2xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-            무료 체험하면 드리는 <span className="underline decoration-red-200 decoration-4 md:decoration-8 underline-offset-4">7가지 혜택</span>
+      <section className={s.benefitsSection}>
+        <div className={s.benefitsHeader}>
+          <h2 className={s.benefitsLabel}>Membership Perks</h2>
+          <h3 className={s.benefitsTitle}>
+            무료 체험하면 드리는 <span className={s.benefitsUnderline}>7가지 혜택</span>
           </h3>
         </div>
-        
-        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6 max-w-6xl mx-auto px-1 md:px-2">
-          {eventBenefits.map((benefit) => (
-            <div 
-              key={benefit.id} 
-              className={`flex flex-col sm:flex-row sm:items-center p-4 md:p-8 rounded-2xl md:rounded-[2rem] border-2 transition-all duration-300 ${benefit.highlight ? 'bg-red-50 border-red-400 shadow-md md:shadow-lg scale-[1.02] md:scale-[1.03] z-10 ring-2 md:ring-4 ring-red-50/50' : 'bg-white border-slate-100 shadow-sm hover:shadow-md hover:border-red-200'}`}
-            >
-              <div className={`w-10 h-10 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center shrink-0 mb-3 sm:mb-0 sm:mr-4 md:mr-5 shadow-sm ${benefit.iconBg}`}>
-                {React.cloneElement(benefit.icon, { className: `w-5 h-5 md:w-8 md:h-8 ${benefit.iconColor}` })}
+        <div className={s.benefitsGrid}>
+          {eventBenefits.map((b) => (
+            <div key={b.id} className={`${s.benefitCard} ${b.highlight ? s.benefitCardHighlight : ''}`}>
+              <div className={s.benefitIcon} style={{ background: b.iconBg, color: b.iconColor }}>
+                {b.iconEl}
               </div>
-              <div className="flex-1 text-center sm:text-left">
-                <p className={`text-[11px] md:text-sm font-black uppercase tracking-widest mb-0.5 md:mb-1 ${benefit.highlight ? 'text-red-400' : 'text-slate-400'}`}>Benefit 0{benefit.id}</p>
-                <p className="text-[15px] md:text-lg font-black text-slate-900 leading-tight mb-1 md:mb-1 tracking-tight truncate sm:whitespace-normal">{benefit.title}</p>
-                <p className={`text-[14px] md:text-base font-black tracking-tight ${benefit.highlight ? 'text-red-600' : 'text-red-500'}`}>{benefit.desc}</p>
+              <div className={s.benefitContent}>
+                <p className={`${s.benefitNum} ${b.highlight ? s.benefitNumHighlight : ''}`}>Benefit 0{b.id}</p>
+                <p className={s.benefitName}>{b.title}</p>
+                <p className={`${s.benefitDesc} ${b.highlight ? s.benefitDescHighlight : ''}`}>{b.desc}</p>
               </div>
             </div>
           ))}
@@ -348,90 +323,76 @@ const App = () => {
       </section>
 
       {/* Point Banner */}
-      <section className="px-4 md:px-6 mt-12 md:mt-16 max-w-5xl mx-auto">
-        <div className="bg-gradient-to-br from-amber-400 via-yellow-400 to-orange-400 rounded-[2rem] md:rounded-[3rem] p-6 md:p-10 shadow-xl shadow-amber-500/20 relative overflow-hidden group">
-          <div className="absolute -right-10 -top-10 text-yellow-300 opacity-40 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-700 pointer-events-none">
-            <Coins className="w-64 h-64 md:w-80 md:h-80" />
-          </div>
-          
-          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between mb-8 md:mb-10">
-            <div className="text-center lg:text-left mb-6 lg:mb-0">
-              <div className="inline-flex items-center space-x-1.5 bg-white/40 backdrop-blur-sm px-3 md:px-4 py-1.5 md:py-2 rounded-full mb-3 md:mb-4 border border-white/50 shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 md:w-4 md:h-4 text-amber-900" />
-                <span className="text-xs font-black text-amber-900 uppercase tracking-widest">Reward Point System</span>
+      <section className={s.pointSection}>
+        <div className={s.pointBanner}>
+          <div className={s.pointBgIcon}>{icons.coins(256)}</div>
+          <div className={s.pointTop}>
+            <div className={s.pointTopText}>
+              <div className={s.pointBadge}>
+                {icons.sparkles(14)}
+                <span className={s.pointBadgeText}>Reward Point System</span>
               </div>
-              <h3 className="text-[26px] sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tighter leading-[1.3] mb-3 md:mb-3">
-                차곡차곡 모은 적립금, <br className="md:hidden" />
-                결제 금액의 <br className="hidden md:block" />
-                <span className="text-white drop-shadow-md underline decoration-amber-500 decoration-4 md:decoration-8 underline-offset-4">최대 30% 추가 할인</span>
+              <h3 className={s.pointTitle}>
+                차곡차곡 모은 적립금, <br className={s.brMobileOnly} />
+                결제 금액의 <br className={s.brDesktopOnly} />
+                <span className={s.pointTitleHighlight}>최대 30% 추가 할인</span>
               </h3>
-              <p className="text-[15px] md:text-lg font-bold text-amber-900/80 tracking-tight leading-relaxed max-w-lg mx-auto lg:mx-0">
-                아인잉글리쉬만의 특급 적립 제도를<br className="md:hidden" /> 100% 활용하세요.<br className="hidden md:block"/> 다양한 활동으로 포인트를 모아 <span className="text-slate-900 font-black bg-white/60 px-1.5 rounded">더욱 가벼운 수강료</span>를 경험하세요!
+              <p className={s.pointDesc}>
+                아인잉글리쉬만의 특급 적립 제도를<br className={s.brMobileOnly} /> 100% 활용하세요.
+                <br className={s.brDesktopOnly} /> 다양한 활동으로 포인트를 모아 <span className={s.pointDescHighlight}>더욱 가벼운 수강료</span>를 경험하세요!
               </p>
             </div>
-            
-            <div className="shrink-0 w-full lg:w-auto">
-              <div className="bg-white px-8 py-5 md:py-6 rounded-[2rem] shadow-lg text-center transform group-hover:-translate-y-1.5 transition-transform duration-300 border-2 border-amber-100 relative overflow-hidden">
-                <div className="absolute top-0 right-0 bg-red-500 text-white text-[11px] font-black px-3 py-1 rounded-bl-xl shadow-sm">
-                  포인트 혜택
-                </div>
-                <p className="text-[14px] md:text-sm font-black text-slate-400 mb-1.5 tracking-tight mt-1">기존 할인가에서 추가로</p>
-                <div className="flex items-baseline justify-center gap-1">
-                  <span className="text-4xl md:text-5xl font-black text-red-600 tracking-tighter italic">-30</span>
-                  <span className="text-2xl md:text-3xl font-black text-red-600 italic">%</span>
+            <div className={s.pointPercentBox}>
+              <div className={s.pointPercentInner}>
+                <div className={s.pointPercentBadge}>포인트 혜택</div>
+                <p className={s.pointPercentLabel}>기존 할인가에서 추가로</p>
+                <div className={s.pointPercentValue}>
+                  <span className={s.pointPercentNum}>-30</span>
+                  <span className={s.pointPercentSign}>%</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-5">
-            <div className="bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-sm text-left transform hover:-translate-y-1 transition-transform border border-white/50 flex flex-col justify-center">
-               <div className="flex items-center space-x-3 mb-2 md:mb-3">
-                 <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
-                   <UserPlus className="w-5 h-5 text-amber-600"/>
-                 </div>
-                 <h4 className="font-black text-slate-900 text-[16px] md:text-lg leading-tight">지인 추천<br/>무제한 적립</h4>
-               </div>
-               <p className="text-[14px] md:text-[15px] text-slate-600 font-bold leading-relaxed">
-                 친구가 내 추천으로 등록할 때마다 <span className="text-amber-600">횟수 제한 없이</span> 포인트가 적립됩니다.
-               </p>
+          <div className={s.pointCards}>
+            <div className={s.pointCard}>
+              <div className={s.pointCardHeader}>
+                <div className={s.pointCardIcon}>{icons.userPlus(20)}</div>
+                <h4 className={s.pointCardTitle}>지인 추천<br/>무제한 적립</h4>
+              </div>
+              <p className={s.pointCardDesc}>
+                친구가 내 추천으로 등록할 때마다 <span className={s.pointCardHighlight}>횟수 제한 없이</span> 포인트가 적립됩니다.
+              </p>
             </div>
-            
-            <div className="bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-sm text-left transform hover:-translate-y-1 transition-transform border border-white/50 flex flex-col justify-center">
-               <div className="flex items-center space-x-3 mb-2 md:mb-3">
-                 <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
-                   <PenTool className="w-5 h-5 text-amber-600"/>
-                 </div>
-                 <h4 className="font-black text-slate-900 text-[16px] md:text-lg leading-tight">수강 후기<br/>리뷰 적립</h4>
-               </div>
-               <p className="text-[14px] md:text-[15px] text-slate-600 font-bold leading-relaxed">
-                 수업 후 정성스러운 <span className="text-amber-600">생생한 리뷰</span>를 남겨주시면 감사 포인트가 지급됩니다.
-               </p>
+            <div className={s.pointCard}>
+              <div className={s.pointCardHeader}>
+                <div className={s.pointCardIcon}>{icons.penTool(20)}</div>
+                <h4 className={s.pointCardTitle}>수강 후기<br/>리뷰 적립</h4>
+              </div>
+              <p className={s.pointCardDesc}>
+                수업 후 정성스러운 <span className={s.pointCardHighlight}>생생한 리뷰</span>를 남겨주시면 감사 포인트가 지급됩니다.
+              </p>
             </div>
-            
-            <div className="bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-sm text-left transform hover:-translate-y-1 transition-transform border border-white/50 flex flex-col justify-center">
-               <div className="flex items-center space-x-3 mb-2 md:mb-3">
-                 <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
-                   <TrendingUp className="w-5 h-5 text-amber-600"/>
-                 </div>
-                 <h4 className="font-black text-slate-900 text-[16px] md:text-lg leading-tight">재수강<br/>감사 적립</h4>
-               </div>
-               <p className="text-[14px] md:text-[15px] text-slate-600 font-bold leading-relaxed">
-                 수강 연장 시 <span className="text-amber-600">재수강 이벤트에 참여</span>하시면 1만원 포인트를 적립해 드립니다.
-               </p>
+            <div className={s.pointCard}>
+              <div className={s.pointCardHeader}>
+                <div className={s.pointCardIcon}>{icons.trendingUp(20)}</div>
+                <h4 className={s.pointCardTitle}>재수강<br/>감사 적립</h4>
+              </div>
+              <p className={s.pointCardDesc}>
+                수강 연장 시 <span className={s.pointCardHighlight}>재수강 이벤트에 참여</span>하시면 1만원 포인트를 적립해 드립니다.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Main Pricing Section */}
-      <main className="px-5 md:px-6 mt-16 md:mt-24 max-w-5xl mx-auto">
-        <div className="text-center mb-10 md:mb-16">
-           <h2 className="text-[30px] sm:text-3xl md:text-5xl font-black italic tracking-tighter uppercase mb-3 md:mb-4 text-slate-900 leading-tight">Pick Your Plan</h2>
-           <p className="text-[15px] sm:text-base md:text-lg font-bold text-slate-500 max-w-[320px] sm:max-w-xs md:max-w-md mx-auto">나에게 꼭 맞는 학습 빈도를 선택하세요.<br className="sm:hidden"/>많이 할수록 혜택은 커집니다.</p>
+      <main className={s.pricingSection}>
+        <div className={s.pricingHeader}>
+          <h2 className={s.pricingTitle}>Pick Your Plan</h2>
+          <p className={s.pricingDesc}>나에게 꼭 맞는 학습 빈도를 선택하세요. 많이 할수록 혜택은 커집니다.</p>
         </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-8">
+        <div className={s.pricingGrid}>
           {[5, 4, 3, 2, 1].map(f => (
             <PlanCard key={f} data={plans[f]} isBest={f === 4} />
           ))}
@@ -439,166 +400,121 @@ const App = () => {
       </main>
 
       {/* Reviews */}
-      <section className="px-5 py-20 md:py-32 bg-white text-center">
-        <h2 className="text-[13px] md:text-sm font-black text-slate-400 uppercase tracking-widest mb-2 md:mb-3">Student Stories</h2>
-        <h3 className="text-[24px] sm:text-2xl md:text-4xl font-black text-slate-900 mb-10 md:mb-16 tracking-tight">수강생이 직접 말하는 <span className="text-red-600 italic">변화</span></h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto px-1 md:px-2">
+      <section className={s.reviewsSection}>
+        <h2 className={s.reviewsLabel}>Student Stories</h2>
+        <h3 className={s.reviewsTitle}>수강생이 직접 말하는 <span className={s.reviewsHighlight}>변화</span></h3>
+        <div className={s.reviewsGrid}>
           {reviews.map((review, idx) => (
-            <div key={idx} className="bg-slate-50 p-6 md:p-10 rounded-2xl md:rounded-[2.5rem] border border-slate-100 text-left relative hover:bg-white hover:shadow-md transition-all">
-              <Quote className="absolute top-4 sm:top-6 right-6 sm:right-8 w-8 h-8 md:w-10 md:h-10 text-slate-200 opacity-50" />
-              <div className="flex items-center space-x-1 mb-4 md:mb-5 text-orange-400">
-                {[...Array(review.rating)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 md:w-4 md:h-4 fill-current" />)}
+            <div key={idx} className={s.reviewCard}>
+              <div className={s.reviewQuote}>{icons.quote(32)}</div>
+              <div className={s.reviewStars}>
+                {[...Array(review.rating)].map((_, i) => <span key={i}>{icons.star(14)}</span>)}
               </div>
-              <p className="text-[15px] md:text-base font-bold text-slate-700 leading-relaxed mb-6 md:mb-8 italic">&quot;{review.content}&quot;</p>
-              <p className="text-[13px] md:text-sm font-black text-slate-400 tracking-widest">{review.name}</p>
+              <p className={s.reviewContent}>&quot;{review.content}&quot;</p>
+              <p className={s.reviewName}>{review.name}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="px-5 py-20 md:py-32 mx-3 sm:mx-4 md:mx-8 rounded-[2rem] md:rounded-[4rem] relative overflow-hidden text-center shadow-xl md:shadow-2xl group border border-slate-800 mb-10 md:mb-16">
-        <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80" 
-            alt="smiling online tutor" 
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 opacity-20"
-          />
-          <div className="absolute inset-0 bg-slate-900/90 md:bg-gradient-to-t md:from-slate-900 md:via-slate-900/95 md:to-slate-900/80 backdrop-blur-[2px]"></div>
+      <section className={s.ctaSection}>
+        <div className={s.ctaBgWrap}>
+          <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80" alt="tutor" className={s.ctaBgImg} />
+          <div className={s.ctaOverlay} />
         </div>
-
-        <div className="relative z-10 flex flex-col items-center justify-center px-2 md:px-4">
-          <div className="inline-flex items-center space-x-1.5 md:space-x-2 bg-slate-800/80 backdrop-blur-md px-4 md:px-5 py-2 md:py-2.5 rounded-full mb-6 md:mb-10 border border-slate-700 shadow-md md:shadow-lg">
-            <div className="flex -space-x-1.5 md:-space-x-2">
-              <img className="w-5 h-5 md:w-8 md:h-8 rounded-full border-2 border-slate-800 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="student 1"/>
-              <img className="w-5 h-5 md:w-8 md:h-8 rounded-full border-2 border-slate-800 object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80" alt="student 2"/>
-              <img className="w-5 h-5 md:w-8 md:h-8 rounded-full border-2 border-slate-800 object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="student 3"/>
+        <div className={s.ctaContent}>
+          <div className={s.ctaAvatars}>
+            <div className={s.ctaAvatarGroup}>
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="s1"/>
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80" alt="s2"/>
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="s3"/>
             </div>
-            <span className="text-xs md:text-sm font-bold text-white pl-1.5 md:pl-2 tracking-tight">수강생 만족도 4.9/5.0</span>
+            <span className={s.ctaAvatarText}>수강생 만족도 4.9/5.0</span>
           </div>
-
-          <h2 className="text-[32px] md:text-5xl lg:text-6xl font-black mb-5 md:mb-8 tracking-tighter leading-[1.3] text-white">
-            원어민과의 첫 만남, <br className="md:hidden" />설렘으로 바꾸세요
-          </h2>
-          <p className="text-[16px] md:text-xl text-slate-300 font-medium leading-relaxed mb-10 md:mb-16 max-w-[320px] md:max-w-lg mx-auto tracking-tight">
+          <h2 className={s.ctaTitle}>원어민과의 첫 만남, <br className={s.brMobileOnly} />설렘으로 바꾸세요</h2>
+          <p className={s.ctaDesc}>
             고민은 실력 향상을 늦출 뿐입니다.<br/>
-            상위 1% 강사진의 몰입형 1:1 환경을<br className="md:hidden" /> 직접 체험하세요.
+            상위 1% 강사진의 몰입형 1:1 환경을<br className={s.brMobileOnly} /> 직접 체험하세요.
           </p>
-          
-          <div className="w-full max-w-[280px] md:max-w-[360px] mx-auto">
-             <button className="w-full bg-[#dc2626] text-white py-5 md:py-7 rounded-[1.5rem] md:rounded-[2.5rem] font-black text-[17px] md:text-2xl flex items-center justify-center space-x-2 shadow-[0_0_20px_rgba(220,38,38,0.3)] md:shadow-[0_0_30px_rgba(220,38,38,0.4)] active:scale-95 transition-all group hover:bg-[#b91c1c]">
-               <span>무료체험 신청하기</span>
-               <ChevronRight className="w-6 h-6 md:w-8 md:h-8 group-hover:translate-x-1.5 transition-transform" />
-             </button>
-             <p className="mt-5 md:mt-8 text-[13px] md:text-base text-slate-400 font-medium tracking-tight flex justify-center items-center">
-               <Sparkles className="w-3.5 h-3.5 md:w-5 md:h-5 text-yellow-400 mr-1.5 md:mr-2" /> <span className="text-slate-200 font-bold">이번 달 선착순 한정</span> <span className="ml-1">무료 혜택</span>
-             </p>
+          <div className={s.ctaBtnWrap}>
+            <button className={s.ctaBtn}>
+              <span>무료체험 신청하기</span>
+              {icons.chevronRight(24)}
+            </button>
+            <p className={s.ctaSubText}>
+              {icons.sparkles(14, "")} <span className={s.ctaSubBold}>이번 달 선착순 한정</span> 무료 혜택
+            </p>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#f8f8f8] pt-12 pb-20 px-5 md:px-10">
-        <div className="max-w-7xl mx-auto">
-          {/* Top Links & Social */}
-          <div className="flex flex-col md:flex-row justify-between items-center mb-10 border-b border-slate-200 pb-6">
-            <div className="flex items-center space-x-6 mb-6 md:mb-0 text-[15px] md:text-[15px] font-bold text-slate-700">
-              <button className="hover:text-red-600 transition-colors">이용약관</button>
-              <button className="hover:text-red-600 transition-colors">개인정보처리방침</button>
+      <footer className={s.footer}>
+        <div className={s.footerInner}>
+          <div className={s.footerTop}>
+            <div className={s.footerLinks}>
+              <button>이용약관</button>
+              <button>개인정보처리방침</button>
             </div>
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-[#ff0000] rounded-full flex items-center justify-center text-white cursor-pointer hover:opacity-80 transition-opacity">
-                <Youtube className="w-4 h-4 fill-current" />
-              </div>
-              <div className="w-8 h-8 bg-[#3b5998] rounded-full flex items-center justify-center text-white cursor-pointer hover:opacity-80 transition-opacity">
-                <Facebook className="w-4 h-4 fill-current" />
-              </div>
-              <div className="w-8 h-8 bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] rounded-full flex items-center justify-center text-white cursor-pointer hover:opacity-80 transition-opacity">
-                <Instagram className="w-4 h-4" />
-              </div>
-              <div className="w-8 h-8 bg-[#3cb371] rounded-full flex items-center justify-center text-white cursor-pointer hover:opacity-80 transition-opacity">
-                <div className="text-[10px] font-black italic">blog</div>
-              </div>
+            <div className={s.footerSocial}>
+              <button className={`${s.socialBtn} ${s.socialYoutube}`}>{icons.youtube(16)}</button>
+              <button className={`${s.socialBtn} ${s.socialFacebook}`}>{icons.facebook(16)}</button>
+              <button className={`${s.socialBtn} ${s.socialInstagram}`}>{icons.instagram(16)}</button>
+              <button className={`${s.socialBtn} ${s.socialBlog}`}><span className={s.socialBlogText}>blog</span></button>
             </div>
           </div>
-
-          {/* Company Info */}
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-            <div className="flex flex-col items-start">
-              {/* Logo */}
-              <div className="flex items-center space-x-2 mb-6 opacity-60 grayscale group hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer">
-                <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center text-white">
-                  <Sparkles className="w-5 h-5" />
-                </div>
-                <div className="text-xl font-black text-red-600 italic tracking-tighter">EINENGLISH</div>
+          <div className={s.footerBottom}>
+            <div>
+              <div className={s.footerLogo}>
+                <div className={s.footerLogoIcon}>{icons.sparkles(20)}</div>
+                <div className={s.footerLogoText}>EINENGLISH</div>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2 text-[13px] md:text-[14px] text-slate-500 font-medium leading-relaxed">
-                <div className="space-y-1">
+              <div className={s.footerInfo}>
+                <div className={s.footerInfoGroup}>
                   <p>상호명 : 아인잉글리쉬 원격평생교육원</p>
                   <p>주소 : 서울시 구로구 디지털로 30길 31</p>
                 </div>
-                <div className="space-y-1">
+                <div className={s.footerInfoGroup}>
                   <p>대표 : 강민규</p>
                   <p>사업자등록번호 : 634-98-00756</p>
                 </div>
-                <div className="space-y-1">
+                <div className={s.footerInfoGroup}>
                   <p>이메일 : einenglish3@gmail.com</p>
                 </div>
-                <div className="space-y-1">
+                <div className={s.footerInfoGroup}>
                   <p>통신판매업신고번호 : 제2022-서울구로-1595호</p>
                 </div>
               </div>
-              
-              <p className="mt-8 text-[13px] text-slate-400 font-medium">
-                © 2022 아인잉글리쉬. All Rights Reserved
-              </p>
-            </div>
-
-            {/* Floating CTA Button (Mobile/Desktop) */}
-            <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-md">
-              <div className="relative group">
-                {/* Tooltip */}
-                <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-red-500 text-white text-[11px] font-black px-4 py-1.5 rounded-full whitespace-nowrap shadow-lg animate-bounce">
-                  2026년 새해에는 반드시 성공하세요! ✨
-                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-red-500 rotate-45"></div>
-                </div>
-                
-                <button className="w-full bg-gradient-to-r from-[#ef4444] to-[#f87171] text-white py-4 md:py-5 rounded-full font-black text-[16px] md:text-[18px] shadow-[0_10px_30px_-5px_rgba(239,68,68,0.5)] flex flex-col items-center justify-center leading-tight hover:scale-[1.02] active:scale-95 transition-all">
-                  <span className="text-[10px] md:text-[12px] opacity-90 mb-0.5">레벨진단 / 학습설계 / 할인혜택</span>
-                  <div className="flex items-center">
-                    <span>체험비 0원 ➜ 지금 신청하기</span>
-                  </div>
-                </button>
-              </div>
-            </div>
-
-            {/* Kakao Talk Floating */}
-            <div className="fixed bottom-8 right-6 z-50">
-              <div className="relative">
-                <div className="w-14 h-14 bg-[#fae100] rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform">
-                  <div className="bg-black rounded-[4px] px-1 py-0.5 text-[8px] font-black text-[#fae100] absolute -top-1 right-0 border-2 border-white">1</div>
-                  <svg className="w-8 h-8 text-[#3c1e1e]" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 3c-4.97 0-9 3.134-9 7 0 2.497 1.731 4.683 4.415 5.942l-.89 3.27c-.1.365.11.739.467.832.115.03.23.03.342 0l3.87-2.57c.26.018.524.026.796.026 4.97 0 9-3.134 9-7s-4.03-7-9-7z" />
-                  </svg>
-                </div>
-              </div>
+              <p className={s.footerCopyright}>© 2022 아인잉글리쉬. All Rights Reserved</p>
             </div>
           </div>
         </div>
       </footer>
 
-      {/* Custom Styles with break-keep applied to all text globally */}
-      <style>{`
-        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-        body { 
-          font-family: 'Pretendard', sans-serif; 
-          letter-spacing: -0.02em; 
-          -webkit-font-smoothing: antialiased; 
-          word-break: keep-all; 
-          overflow-wrap: break-word; 
-        }
-      `}</style>
+      {/* Floating CTA */}
+      <div className={s.floatingCta}>
+        <div className={s.floatingCtaInner}>
+          <div className={s.floatingCtaTooltip}>
+            2026년 새해에는 반드시 성공하세요! ✨
+            <div className={s.floatingCtaTooltipArrow} />
+          </div>
+          <button className={s.floatingCtaBtn}>
+            <span className={s.floatingCtaSub}>레벨진단 / 학습설계 / 할인혜택</span>
+            <span>체험비 0원 ➜ 지금 신청하기</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Kakao Talk */}
+      <div className={s.floatingKakao}>
+        <button className={s.kakaoBtn}>
+          <span className={s.kakaoBadge}>1</span>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="#3c1e1e">
+            <path d="M12 3c-4.97 0-9 3.134-9 7 0 2.497 1.731 4.683 4.415 5.942l-.89 3.27c-.1.365.11.739.467.832.115.03.23.03.342 0l3.87-2.57c.26.018.524.026.796.026 4.97 0 9-3.134 9-7s-4.03-7-9-7z" />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 };
