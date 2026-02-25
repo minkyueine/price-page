@@ -493,6 +493,7 @@ const App = () => {
       </footer>
 
       {/* Floating CTA */}
+      {/* 
       <div className={s.floatingCta}>
         <div className={s.floatingCtaInner}>
           <div className={s.floatingCtaTooltip}>
@@ -505,8 +506,10 @@ const App = () => {
           </button>
         </div>
       </div>
+      */}
 
       {/* Kakao Talk */}
+      {/* 
       <div className={s.floatingKakao}>
         <button className={s.kakaoBtn}>
           <span className={s.kakaoBadge}>1</span>
@@ -515,6 +518,7 @@ const App = () => {
           </svg>
         </button>
       </div>
+      */}
     </div>
   );
 };
