@@ -105,7 +105,10 @@ const PlanCard = ({ data, isBest }) => (
       <div className={s.planRight}>
         <div className={s.planTagRow}>
           <span className={`${s.planTag} ${isBest ? s.planTagBest : ''}`}>{data.tag}</span>
-          <h3 className={s.planLabel}>{data.label}</h3>
+          <h3 className={s.planLabel}>
+            <br className={s.brDesktopOnly} />
+            {data.label}
+          </h3>
         </div>
         <div className={s.planTargets}>
           {data.targets.map((t, idx) => (
