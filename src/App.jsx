@@ -61,6 +61,7 @@ const PriceTable = ({ prices }) => (
         {prices.m1.discount > 0 && <div className={`${s.priceDiscount} ${s.priceDiscountSlate}`}>{prices.m1.discount}% 할인</div>}
         <div>
           <span className={`${s.pricePeriod} ${s.colorSlate700}`}>1개월</span>
+          <span className={s.priceTotalCount}>(총 {prices.m1.count}회)</span>
           <div className={`${s.pricePer} ${s.colorSlate500}`}>회당 {prices.m1.per.toLocaleString()}원</div>
         </div>
         <div style={{ textAlign: "right" }}>
@@ -71,6 +72,7 @@ const PriceTable = ({ prices }) => (
         <div className={`${s.priceDiscount} ${s.priceDiscountRed}`}>{prices.m3.discount}% 할인</div>
         <div>
           <span className={`${s.pricePeriod} ${s.colorRed600}`}>3개월</span>
+          <span className={s.priceTotalCount}>(총 {prices.m3.count}회)</span>
           <div className={`${s.pricePer} ${s.colorRed500}`}>회당 {prices.m3.per.toLocaleString()}원</div>
         </div>
         <div style={{ textAlign: "right" }}>
@@ -81,6 +83,7 @@ const PriceTable = ({ prices }) => (
         <div className={`${s.priceDiscount} ${s.priceDiscountOrange}`}>{prices.m6.discount}% 할인</div>
         <div>
           <span className={`${s.pricePeriod} ${s.colorOrange600}`}>6개월</span>
+          <span className={s.priceTotalCount}>(총 {prices.m6.count}회)</span>
           <div className={`${s.pricePer} ${s.colorOrange500}`}>회당 {prices.m6.per.toLocaleString()}원</div>
         </div>
         <div style={{ textAlign: "right" }}>
@@ -142,7 +145,11 @@ const App = () => {
         { name: "성인 집중", color: "bg-slate-50 text-slate-500 border-slate-200" }
       ],
       pros: ["회당 단가 최대 46.2% 할인 적용", "매일 영어 환경 노출로 영어 뇌 생성", "압도적인 발화량으로 실력 수직 향상"],
-      prices: { m1: { total: 169000, per: 8450, discount: 37.4 }, m3: { total: 471500, per: 7858, discount: 41.8 }, m6: { total: 872000, per: 7267, discount: 46.2 } }
+      prices: { 
+        m1: { total: 169000, per: 8450, discount: 37.4, count: 20 }, 
+        m3: { total: 471500, per: 7858, discount: 41.8, count: 60 }, 
+        m6: { total: 872000, per: 7267, discount: 46.2, count: 120 } 
+      }
     },
     4: {
       label: "주 4회", tag: "INTENSIVE", iconEl: icons.zap(28), benefit: "단기간 실력 완성 집중 트레이닝",
@@ -151,7 +158,11 @@ const App = () => {
         { name: "면접·비즈니스 대비", color: "bg-slate-50 text-slate-600 border-slate-200" }
       ],
       pros: ["직장인/학생 선호도 1위 집중 코스", "비즈니스 미팅, 영어 면접 완벽 대비", "매일 규칙적인 발화력 확장 훈련"],
-      prices: { m1: { total: 149000, per: 9313, discount: 30.7 }, m3: { total: 415700, per: 8660, discount: 35.9 }, m6: { total: 768800, per: 8008, discount: 41.2 } }
+      prices: { 
+        m1: { total: 149000, per: 9313, discount: 30.7, count: 16 }, 
+        m3: { total: 415700, per: 8660, discount: 35.9, count: 48 }, 
+        m6: { total: 768800, per: 8008, discount: 41.2, count: 96 } 
+      }
     },
     3: {
       label: "주 3회", tag: "SIGNATURE", iconEl: icons.target(28), benefit: "국내에서 경험하는 1:1 어학연수",
@@ -161,16 +172,24 @@ const App = () => {
         { name: "성인", color: "bg-slate-50 text-slate-600 border-slate-200" }
       ],
       pros: ["망각 곡선을 이겨내는 반복 학습의 힘", "가장 합리적인 가성비 추천 코스", "꾸준한 실력 향상을 보장하는 시그니처 플랜"],
-      prices: { m1: { total: 129000, per: 10750, discount: 20.4 }, m3: { total: 359900, per: 9997, discount: 25.9 }, m6: { total: 665600, per: 9244, discount: 31.5 } }
+      prices: { 
+        m1: { total: 129000, per: 10750, discount: 20.4, count: 12 }, 
+        m3: { total: 359900, per: 9997, discount: 25.9, count: 36 }, 
+        m6: { total: 665600, per: 9244, discount: 31.5, count: 72 } 
+      }
     },
     2: {
       label: "주 2회", tag: "STEADY", iconEl: icons.calendar(28), benefit: "일상과 공부의 조화를 이루는 습관",
       targets: [
         { name: "중·고등", color: "bg-green-50 text-green-600 border-green-100" },
-        { name: "성인 루틴유지", color: "bg-slate-50 text-slate-600 border-slate-200" }
+        { name: "성인 루틴유지", color: "bg-slate-50 text-slate-500 border-slate-200" }
       ],
       pros: ["충분한 복습 시간을 확보하는 루틴", "규칙적인 노출로 실전 감각 유지", "지속 가능한 성장을 위한 실속 선택"],
-      prices: { m1: { total: 94000, per: 11750, discount: 13 }, m3: { total: 262300, per: 10929, discount: 19.1 }, m6: { total: 485000, per: 10104, discount: 25.1 } }
+      prices: { 
+        m1: { total: 94000, per: 11750, discount: 13, count: 8 }, 
+        m3: { total: 262300, per: 10929, discount: 19.1, count: 24 }, 
+        m6: { total: 485000, per: 10104, discount: 25.1, count: 48 } 
+      }
     },
     1: {
       label: "주 1회", tag: "LIGHT", iconEl: icons.heart(28), benefit: "영어의 감을 유지하는 꾸준한 관리",
@@ -178,7 +197,11 @@ const App = () => {
         { name: "전 연령 (유지용)", color: "bg-purple-50 text-purple-600 border-purple-100" }
       ],
       pros: ["부담 없는 가격으로 가벼운 첫 시작", "특정 요일 집중 대화로 실력 점검", "장기간 유지에 특화된 실속형 플랜"],
-      prices: { m1: { total: 54000, per: 13500, discount: 0 }, m3: { total: 150700, per: 12558, discount: 7 }, m6: { total: 278600, per: 11608, discount: 14 } }
+      prices: { 
+        m1: { total: 54000, per: 13500, discount: 0, count: 4 }, 
+        m3: { total: 150700, per: 12558, discount: 7, count: 12 }, 
+        m6: { total: 278600, per: 11608, discount: 14, count: 24 } 
+      }
     }
   };
 
@@ -333,8 +356,8 @@ const App = () => {
                 <span className={s.pointBadgeText}>Reward Point System</span>
               </div>
               <h3 className={s.pointTitle}>
-                차곡차곡 모은 적립금, <br className={s.brMobileOnly} />
-                결제 금액의 <br className={s.brDesktopOnly} />
+                차곡차곡 모은 적립금, <br />
+                결제 금액의 <br className={s.brMobileOnly} />
                 <span className={s.pointTitleHighlight}>최대 30% 추가 할인</span>
               </h3>
               <p className={s.pointDesc}>

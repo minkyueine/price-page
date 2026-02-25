@@ -1076,6 +1076,13 @@
   font-weight: 700;
 }
 
+.priceTotalCount {
+  font-size: 13px;
+  font-weight: 700;
+  color: #94a3b8;
+  margin-left: 4px;
+}
+
 .pricePer {
   font-size: 13px;
   font-weight: 700;
