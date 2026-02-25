@@ -390,7 +390,7 @@ const App = () => {
       <main className={s.pricingSection}>
         <div className={s.pricingHeader}>
           <h2 className={s.pricingTitle}>Pick Your Plan</h2>
-          <p className={s.pricingDesc}>나에게 꼭 맞는 학습 빈도를 선택하세요. 많이 할수록 혜택은 커집니다.</p>
+          <p className={s.pricingDesc}>나에게 꼭 맞는 학습 빈도를 선택하세요. <br className={s.brDesktopOnly} /> 많이 할수록 혜택은 커집니다.</p>
         </div>
         <div className={s.pricingGrid}>
           {[5, 4, 3, 2, 1].map(f => (
