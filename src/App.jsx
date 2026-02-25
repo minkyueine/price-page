@@ -226,7 +226,7 @@ const App = () => {
             </div>
             <div className={s.menuItems}>
               <div className={s.menuItemFree}>
-                <button>
+                <button onClick={() => window.location.href = 'https://einenglish.com/apply'}>
                   무료체험신청
                   <div className={s.menuTooltip}>
                     3,000원 할인
@@ -438,7 +438,7 @@ const App = () => {
             상위 1% 강사진의 몰입형 1:1 환경을<br className={s.brMobileOnly} /> 직접 체험하세요.
           </p>
           <div className={s.ctaBtnWrap}>
-            <button className={s.ctaBtn}>
+            <button className={s.ctaBtn} onClick={() => window.location.href = 'https://einenglish.com/apply'}>
               <span>무료체험 신청하기</span>
               {icons.chevronRight(24)}
             </button>
