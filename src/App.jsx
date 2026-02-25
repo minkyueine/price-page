@@ -290,10 +290,6 @@ const App = () => {
           <img src="/price-page/assets/tutor.png" alt="tutor" className={s.floatingImg} />
         </div>
 
-        <div className={s.heroBadge}>
-          {icons.sparkles(14)} <span style={{ marginLeft: 6 }}>2026 OFFICIAL TUITION</span>
-        </div>
-
         <h1 className={s.heroTitle}>
           <span className={s.heroSubtitle}>하루 커피 한 잔 값이면</span>
           <span className={s.heroPriceWrap}>
@@ -313,7 +309,7 @@ const App = () => {
         </div>
 
         <p className={s.heroDesc}>
-          비싼 수강료에 망설이셨나요?<br className={s.brSmHide} /> 상위 1% 원어민 강사진과의 1:1 학습을 가장 합리적인 가격으로 시작하세요.
+          비싼 수강료에 망설이셨나요?<br className={s.brSmHide} /> 상위 1% 원어민 강사진과의 1:1 학습을<br /> 가장 합리적인 가격으로 시작하세요.
         </p>
 
         <div className={s.heroArrow}>
@@ -361,8 +357,8 @@ const App = () => {
                 <span className={s.pointTitleHighlight}>최대 30% 추가 할인</span>
               </h3>
               <p className={s.pointDesc}>
-                아인잉글리쉬만의 특급 적립 제도를 100% 활용하세요.
-                <br /> 다양한 활동으로 포인트를 모아 <span className={s.pointDescHighlight}>더욱 가벼운 수강료</span>를 경험하세요!
+                아인잉글리쉬만의 특급 적립 제도를<br className={s.brMobileOnly} /> 100% 활용하세요.
+                <br /> 다양한 활동으로 포인트를 모아 <br className={s.brMobileOnly} /><span className={s.pointDescHighlight}>더욱 가벼운 수강료</span>를 경험하세요!
               </p>
             </div>
             <div className={s.pointPercentBox}>
