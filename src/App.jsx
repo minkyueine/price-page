@@ -261,10 +261,10 @@ const App = () => {
       {/* Hero Section */}
       <section className={s.hero}>
         <div className={s.floatingImgRight}>
-          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80" alt="study" className={s.floatingImg} />
+          <img src="/price-page/assets/__________2-1aacc772-3d87-4bc1-a5f4-737df7102463.png" alt="study" className={s.floatingImg} />
         </div>
         <div className={s.floatingImgLeft}>
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="tutor" className={s.floatingImg} />
+          <img src="/price-page/assets/__________-0666425b-ba77-4cdc-80a2-40bdc0bb3e72.png" alt="tutor" className={s.floatingImg} />
         </div>
 
         <div className={s.heroBadge}>
