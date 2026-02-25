@@ -105,10 +105,7 @@ const PlanCard = ({ data, isBest }) => (
       <div className={s.planRight}>
         <div className={s.planTagRow}>
           <span className={`${s.planTag} ${isBest ? s.planTagBest : ''}`}>{data.tag}</span>
-          <h3 className={s.planLabel}>
-            <br className={s.brDesktopOnly} />
-            {data.label}
-          </h3>
+          <h3 className={s.planLabel}>{data.label}</h3>
         </div>
         <div className={s.planTargets}>
           {data.targets.map((t, idx) => (
@@ -364,7 +361,7 @@ const App = () => {
                 <h4 className={s.pointCardTitle}>지인 추천<br/>무제한 적립</h4>
               </div>
               <p className={s.pointCardDesc}>
-                친구가 내 추천으로 등록할 때마다 <span className={s.pointCardHighlight}>횟수 제한 없이</span> 포인트가 적립됩니다.
+                친구가 내 추천으로 등록할 때마다 <br className={s.brDesktopOnly} /> <span className={s.pointCardHighlight}>횟수 제한 없이</span> 포인트가 적립됩니다.
               </p>
             </div>
             <div className={s.pointCard}>
@@ -496,7 +493,6 @@ const App = () => {
       </footer>
 
       {/* Floating CTA */}
-      {/* 
       <div className={s.floatingCta}>
         <div className={s.floatingCtaInner}>
           <div className={s.floatingCtaTooltip}>
@@ -509,10 +505,8 @@ const App = () => {
           </button>
         </div>
       </div>
-      */}
 
       {/* Kakao Talk */}
-      {/* 
       <div className={s.floatingKakao}>
         <button className={s.kakaoBtn}>
           <span className={s.kakaoBadge}>1</span>
@@ -521,7 +515,6 @@ const App = () => {
           </svg>
         </button>
       </div>
-      */}
     </div>
   );
 };
