@@ -492,29 +492,8 @@ const App = () => {
         </div>
       </footer>
 
-      {/* Floating CTA */}
-      <div className={s.floatingCta}>
-        <div className={s.floatingCtaInner}>
-          <div className={s.floatingCtaTooltip}>
-            2026년 새해에는 반드시 성공하세요! ✨
-            <div className={s.floatingCtaTooltipArrow} />
-          </div>
-          <button className={s.floatingCtaBtn}>
-            <span className={s.floatingCtaSub}>레벨진단 / 학습설계 / 할인혜택</span>
-            <span>체험비 0원 ➜ 지금 신청하기</span>
-          </button>
-        </div>
-      </div>
-
-      {/* Kakao Talk */}
-      <div className={s.floatingKakao}>
-        <button className={s.kakaoBtn}>
-          <span className={s.kakaoBadge}>1</span>
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="#3c1e1e">
-            <path d="M12 3c-4.97 0-9 3.134-9 7 0 2.497 1.731 4.683 4.415 5.942l-.89 3.27c-.1.365.11.739.467.832.115.03.23.03.342 0l3.87-2.57c.26.018.524.026.796.026 4.97 0 9-3.134 9-7s-4.03-7-9-7z" />
-          </svg>
-        </button>
-      </div>
+      {/* Floating CTA 제거됨 */}
+      {/* Kakao Talk 제거됨 */}
     </div>
   );
 };
