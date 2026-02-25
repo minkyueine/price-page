@@ -361,8 +361,8 @@ const App = () => {
                 <span className={s.pointTitleHighlight}>최대 30% 추가 할인</span>
               </h3>
               <p className={s.pointDesc}>
-                아인잉글리쉬만의 특급 적립 제도를<br className={s.brMobileOnly} /> 100% 활용하세요.
-                <br className={s.brDesktopOnly} /> 다양한 활동으로 포인트를 모아 <span className={s.pointDescHighlight}>더욱 가벼운 수강료</span>를 경험하세요!
+                아인잉글리쉬만의 특급 적립 제도를 100% 활용하세요.
+                <br /> 다양한 활동으로 포인트를 모아 <span className={s.pointDescHighlight}>더욱 가벼운 수강료</span>를 경험하세요!
               </p>
             </div>
             <div className={s.pointPercentBox}>
