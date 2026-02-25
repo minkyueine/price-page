@@ -334,8 +334,7 @@ const App = () => {
               </div>
               <h3 className={s.pointTitle}>
                 차곡차곡 모은 적립금, <br className={s.brMobileOnly} />
-                결제 금액의 <br className={s.brMobileOnly} />
-                <span className={s.pointTitleHighlight}>최대 30% 추가 할인</span>
+                결제 금액의 <span className={s.pointTitleHighlight}>최대 30% 추가 할인</span>
               </h3>
               <p className={s.pointDesc}>
                 아인잉글리쉬만의 특급 적립 제도를<br className={s.brMobileOnly} /> 100% 활용하세요.
