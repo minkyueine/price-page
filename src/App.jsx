@@ -426,9 +426,9 @@ const App = () => {
         <div className={s.ctaContent}>
           <div className={s.ctaAvatars}>
             <div className={s.ctaAvatarGroup}>
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="s1"/>
-              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80" alt="s2"/>
-              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="s3"/>
+              <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=100&q=80" alt="student1"/>
+              <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=100&q=80" alt="student2"/>
+              <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=100&q=80" alt="student3"/>
             </div>
             <span className={s.ctaAvatarText}>수강생 만족도 4.9/5.0</span>
           </div>
