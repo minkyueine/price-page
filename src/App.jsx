@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from './App.module.css';
 
 const Icon = ({ d, size = 24, fill = "none", stroke = "currentColor", strokeWidth = 2, className = "", style = {} }) => (
@@ -137,7 +137,9 @@ const PlanCard = ({ data, isBest }) => (
 );
 
 const App = () => {
-  const plans = {
+  const [is50Min, setIs50Min] = useState(false);
+
+  const plansMeta = {
     5: {
       label: "주 5회", tag: "IMMERSION", iconEl: icons.flame(28), benefit: "학습 효율이 극대화되는 황금 주기",
       targets: [
@@ -145,11 +147,6 @@ const App = () => {
         { name: "성인 집중", color: "bg-slate-50 text-slate-500 border-slate-200" }
       ],
       pros: ["회당 단가 최대 46.2% 할인 적용", "매일 영어 환경 노출로 영어 뇌 생성", "압도적인 발화량으로 실력 수직 향상"],
-      prices: { 
-        m1: { total: 169000, per: 8450, discount: 37.4, count: 20 }, 
-        m3: { total: 471500, per: 7858, discount: 41.8, count: 60 }, 
-        m6: { total: 872000, per: 7267, discount: 46.2, count: 120 } 
-      }
     },
     4: {
       label: "주 4회", tag: "INTENSIVE", iconEl: icons.zap(28), benefit: "단기간 실력 완성 집중 트레이닝",
@@ -158,11 +155,6 @@ const App = () => {
         { name: "면접·비즈니스 대비", color: "bg-slate-50 text-slate-600 border-slate-200" }
       ],
       pros: ["직장인/학생 선호도 1위 집중 코스", "비즈니스 미팅, 영어 면접 완벽 대비", "매일 규칙적인 발화력 확장 훈련"],
-      prices: { 
-        m1: { total: 149000, per: 9313, discount: 30.7, count: 16 }, 
-        m3: { total: 415700, per: 8660, discount: 35.9, count: 48 }, 
-        m6: { total: 768800, per: 8008, discount: 41.2, count: 96 } 
-      }
     },
     3: {
       label: "주 3회", tag: "SIGNATURE", iconEl: icons.target(28), benefit: "국내에서 경험하는 1:1 어학연수",
@@ -172,11 +164,6 @@ const App = () => {
         { name: "성인", color: "bg-slate-50 text-slate-600 border-slate-200" }
       ],
       pros: ["망각 곡선을 이겨내는 반복 학습의 힘", "가장 합리적인 가성비 추천 코스", "꾸준한 실력 향상을 보장하는 시그니처 플랜"],
-      prices: { 
-        m1: { total: 129000, per: 10750, discount: 20.4, count: 12 }, 
-        m3: { total: 359900, per: 9997, discount: 25.9, count: 36 }, 
-        m6: { total: 665600, per: 9244, discount: 31.5, count: 72 } 
-      }
     },
     2: {
       label: "주 2회", tag: "STEADY", iconEl: icons.calendar(28), benefit: "일상과 공부의 조화를 이루는 습관",
@@ -185,11 +172,6 @@ const App = () => {
         { name: "성인 루틴유지", color: "bg-slate-50 text-slate-500 border-slate-200" }
       ],
       pros: ["충분한 복습 시간을 확보하는 루틴", "규칙적인 노출로 실전 감각 유지", "지속 가능한 성장을 위한 실속 선택"],
-      prices: { 
-        m1: { total: 94000, per: 11750, discount: 13, count: 8 }, 
-        m3: { total: 262300, per: 10929, discount: 19.1, count: 24 }, 
-        m6: { total: 485000, per: 10104, discount: 25.1, count: 48 } 
-      }
     },
     1: {
       label: "주 1회", tag: "LIGHT", iconEl: icons.heart(28), benefit: "영어의 감을 유지하는 꾸준한 관리",
@@ -197,13 +179,29 @@ const App = () => {
         { name: "전 연령 (유지용)", color: "bg-purple-50 text-purple-600 border-purple-100" }
       ],
       pros: ["부담 없는 가격으로 가벼운 첫 시작", "특정 요일 집중 대화로 실력 점검", "장기간 유지에 특화된 실속형 플랜"],
-      prices: { 
-        m1: { total: 54000, per: 13500, discount: 0, count: 4 }, 
-        m3: { total: 150700, per: 12558, discount: 7, count: 12 }, 
-        m6: { total: 278600, per: 11608, discount: 14, count: 24 } 
-      }
     }
   };
+
+  const prices25 = {
+    5: { m1: { total: 169000, per: 8450, discount: 37.4, count: 20 }, m3: { total: 471500, per: 7858, discount: 41.8, count: 60 }, m6: { total: 872000, per: 7267, discount: 46.2, count: 120 } },
+    4: { m1: { total: 149000, per: 9313, discount: 30.7, count: 16 }, m3: { total: 415700, per: 8660, discount: 35.9, count: 48 }, m6: { total: 768800, per: 8008, discount: 41.2, count: 96 } },
+    3: { m1: { total: 129000, per: 10750, discount: 20.4, count: 12 }, m3: { total: 359900, per: 9997, discount: 25.9, count: 36 }, m6: { total: 665600, per: 9244, discount: 31.5, count: 72 } },
+    2: { m1: { total: 94000, per: 11750, discount: 13, count: 8 }, m3: { total: 262300, per: 10929, discount: 19.1, count: 24 }, m6: { total: 485000, per: 10104, discount: 25.1, count: 48 } },
+    1: { m1: { total: 54000, per: 13500, discount: 0, count: 4 }, m3: { total: 150700, per: 12558, discount: 7, count: 12 }, m6: { total: 278600, per: 11608, discount: 14, count: 24 } },
+  };
+
+  const prices50 = {
+    5: { m1: { total: 334000, per: 16700, discount: 28.9, count: 20 }, m3: { total: 931900, per: 15532, discount: 33.9, count: 60 }, m6: { total: 1723400, per: 14362, discount: 38.9, count: 120 } },
+    4: { m1: { total: 268000, per: 16750, discount: 28.7, count: 16 }, m3: { total: 747700, per: 15577, discount: 33.7, count: 48 }, m6: { total: 1382900, per: 14405, discount: 38.7, count: 96 } },
+    3: { m1: { total: 202000, per: 16833, discount: 28.4, count: 12 }, m3: { total: 563600, per: 15656, discount: 33.4, count: 36 }, m6: { total: 1042300, per: 14476, discount: 38.4, count: 72 } },
+    2: { m1: { total: 149000, per: 18625, discount: 20.7, count: 8 }, m3: { total: 415700, per: 17321, discount: 26.3, count: 24 }, m6: { total: 768800, per: 16017, discount: 31.8, count: 48 } },
+    1: { m1: { total: 94000, per: 23500, discount: 0, count: 4 }, m3: { total: 262300, per: 21858, discount: 7, count: 12 }, m6: { total: 485000, per: 20208, discount: 14, count: 24 } },
+  };
+
+  const currentPrices = is50Min ? prices50 : prices25;
+  const plans = Object.fromEntries(
+    Object.entries(plansMeta).map(([key, meta]) => [key, { ...meta, prices: currentPrices[key] }])
+  );
 
   const eventBenefits = [
     { id: 1, title: "무료체험", desc: "3,000원 할인", iconEl: icons.gift(20), iconBg: "#fef2f2", iconColor: "#dc2626" },
@@ -410,6 +408,13 @@ const App = () => {
         <div className={s.pricingHeader}>
           <h2 className={s.pricingTitle}>Pick Your Plan</h2>
           <p className={s.pricingDesc}>나에게 꼭 맞는 학습 빈도를 선택하세요. <br className={s.brMobileOnly} /><br className={s.brDesktopOnly} /> 많이 할수록 혜택은 커집니다.</p>
+          <div className={s.durationToggle}>
+            <span className={`${s.durationLabel} ${!is50Min ? s.durationLabelActive : ''}`}>25분 수업</span>
+            <button className={s.toggleSwitch} onClick={() => setIs50Min(!is50Min)} aria-label="수업 시간 전환">
+              <div className={`${s.toggleKnob} ${is50Min ? s.toggleKnobOn : ''}`} />
+            </button>
+            <span className={`${s.durationLabel} ${is50Min ? s.durationLabelActive : ''}`}>50분 수업</span>
+          </div>
         </div>
         <div className={s.pricingGrid}>
           {[5, 4, 3, 2, 1].map(f => (
